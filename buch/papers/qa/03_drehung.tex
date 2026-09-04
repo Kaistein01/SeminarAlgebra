@@ -56,10 +56,11 @@ Beispiel gezeigt wird.
         = k
     \end{equation*}
     berechnet. Nun soll die Drehung durchgeführt werden. Dafür wird die 
-    Quaternion $q$ mit dem Punkt $P_1$ von links multipliziert:
+    Quaternion $q$ mit dem Punkt $P_1$ von links multipliziert, was
     \begin{equation*}
         P_{1L} = q \cdot P_1 = k \cdot k = k^2 = -1
     \end{equation*}
+    ergibt.
     Das Ergebnis ist $-1$, was dem Punkt $(0,0,0)$ mit Realteil $-1$ entspricht. 
     Statt dass der Punkt auf der $z$-Achse geblieben ist, wurde er weder Erwarten 
     auf den Ursprung verschoben mit Länge 1 in der vierten Dimension.
@@ -190,9 +191,9 @@ entscheidende Wirkungen:
     \item Die Drehrichtung von Rechts wird umgekehrt, sodass zwei 
     aufeinanderfolgende Drehungen in gleicher Richtung erfolgen
 \end{itemize}
-Die Drehformel lautet also:
+Die Drehformel lautet also
 \begin{equation*}
-    P' = q P q^{-1}
+    P' = q P q^{-1}.
 \end{equation*}
 Und für Einheitsquaternionen kann die Formel auch in der Form
 \begin{equation*}
@@ -202,7 +203,7 @@ geschrieben werden. Die Berechnung der Konjugation ist deutlich
 einfacher als die Berechnung der Inversen, da nur die Vorzeichen
 der Imaginärteile geändert werden müssen.
 Mit dem Beispielpunkt $P_2$ und der Quaternion $q$ für eine Drehung
-um 90° um die $z$-Achse ergibt sich:
+um 90° um die $z$-Achse ergibt sich
 \begin{align*}
     P' &= q P_2 q^{-1} \\
     &= k (0 + 0i + 1j + 1k) k^{-1} \\
@@ -210,7 +211,7 @@ um 90° um die $z$-Achse ergibt sich:
     &= kjk + kk(-k) \\
     &= -i - k^3 \\
     &= -i + k \\
-    &= (-1, 0, 1) \quad \text{(ohne Realteil!)}
+    &= (-1, 0, 1) \quad \text{(ohne Realteil!)}.
 \end{align*}
 Es ist zu beachten, dass nun eine 180° Drehung durchgeführt wurde, 
 da die Multiplikation von Links und Rechts jeweils eine 90° Drehung 
