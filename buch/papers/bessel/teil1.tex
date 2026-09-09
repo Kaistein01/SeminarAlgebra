@@ -5,119 +5,243 @@
 %
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
+% !TeX spellcheck = de_CH
 %
 \section{Herleitung der Bessel-Differentialgleichung
 \label{bessel:section:herleitung}}
 \kopfrechts{Herleitung}
-% Funktion dieses Abschnitts:
-% Zeigen, wie die Bessel'sche DGL aus einem konkreten physikalischen
-% Problem entsteht. Das ist der "Aha"-Moment des Kapitels.
-% Roter Faden: Wellengleichung -> stationäre Lösung (Helmholtz) ->
-% Zylinderkoordinaten -> Separation -> Bessel-DGL für den Radialteil.
+%
+% Ziel: zeigen, dass die Bessel-DGL nicht vom Himmel fällt, sondern
+% zwangsläufig entsteht, sobald man ein Wellenproblem auf einem
+% Kreisgebiet separiert.
+% Roter Faden: Rechteck -> Kreis. Am Rechteck geht alles mit sin/cos
+% auf, am Kreis nicht mehr.
+%
+Die Bessel-Differentialgleichung fällt nicht vom Himmel.
+Sie entsteht zwangsläufig, sobald man ein Schwingungsproblem auf einem
+kreisförmigen Gebiet in Koordinaten zerlegt, die zur Geometrie passen.
+Dieser Abschnitt führt die Rechnung von der Wellengleichung bis zur
+fertigen Differentialgleichung durch.
 
-Bevor wir die Bessel'sche Differentialgleichung analysieren, soll gezeigt werden, woher sie kommt.
-Wir leiten sie aus einem klassischen physikalischen Problem her: der Helmholtz-Gleichung in Zylinderkoordinaten.
-
-\subsection{Die Wellengleichung und die Helmholtz-Gleichung
-\label{bessel:subsection:helmholtz}}
-% Inhalt:
-% - Wellengleichung in 2D/3D: u_tt = c^2 \Delta u.
-% - Stationärer Ansatz mit harmonischer Zeitabhängigkeit:
-%   u(\vec x, t) = U(\vec x) e^{i\omega t}
-% - Einsetzen liefert die Helmholtz-Gleichung \Delta U + k^2 U = 0
-%   mit k = \omega / c.
-
-Die räumliche Ausbreitung von Wellen wird durch die Wellengleichung
+%
+% Die schwingende Membran
+%
+\subsection{Die schwingende Membran
+\label{bessel:herleitung:subsection:membran}}
+Eine eingespannte Membran wird durch ihre Auslenkung $u(x,y,t)$
+senkrecht zur Ruhelage beschrieben.
+Für kleine Auslenkungen genügt $u$ der Wellengleichung
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2}
 =
-c^2 \Delta u
-\label{bessel:equation:wellen}
-\end{equation}
-beschrieben, wobei $\Delta$ den Laplace-Operator und $c$ die Ausbreitungsgeschwindigkeit bezeichnet.
-Wir suchen Lösungen mit harmonischer Zeitabhängigkeit der Form
-\begin{equation}
-u(\vec x, t)
-=
-U(\vec x)\, e^{i\omega t}.
-\label{bessel:equation:ansatz-zeit}
-\end{equation}
-Einsetzen in~\eqref{bessel:equation:wellen} liefert für die räumliche Funktion $U$ die Helmholtz-Gleichung
-\begin{equation}
-\Delta U + k^2 U = 0,
+c^2 \Delta u,
 \qquad
-k = \frac{\omega}{c}.
-\label{bessel:equation:helmholtz}
-\end{equation}
-% [TODO: kurzer Kommentar dazu, dass k die Wellenzahl ist]
-
-\subsection{Zylinderkoordinaten
-\label{bessel:subsection:zylinderkoordinaten}}
-% Inhalt:
-% - Laplace-Operator in Zylinderkoordinaten (r, phi, z) explizit hinschreiben.
-% - Argumentieren, warum diese Koordinaten bei rotationssymmetrischen
-%   Problemen die "natürlichen" sind.
-
-Bei Problemen mit zylindrischer Symmetrie ist es zweckmässig, in Zylinderkoordinaten $(r, \varphi, z)$ zu rechnen.
-Der Laplace-Operator nimmt in diesen Koordinaten die Form
-\begin{equation}
-\Delta U
+\Delta
 =
-\frac{1}{r}\frac{\partial}{\partial r}\!\left(r\frac{\partial U}{\partial r}\right)
-+ \frac{1}{r^2}\frac{\partial^2 U}{\partial \varphi^2}
-+ \frac{\partial^2 U}{\partial z^2}
-\label{bessel:equation:laplace-zylinder}
+\frac{\partial^2}{\partial x^2}
++
+\frac{\partial^2}{\partial y^2},
+\label{bessel:herleitung:eqn:welle}
 \end{equation}
-an.
-% [TODO: kurze Herleitung oder Verweis auf Standardliteratur]
+wobei $c$ die Ausbreitungsgeschwindigkeit ist.
+% [TODO: Herleitung von (Kraftbilanz am Flächenelement) entweder kurz
+%        ausführen oder auf eine Physikquelle verweisen]
+Am Rand der Membran ist die Auslenkung null, es gilt also
+$u=0$ auf dem Rand des Gebietes.
 
-\subsection{Separationsansatz
-\label{bessel:subsection:separation}}
-% Inhalt:
-% - Produktansatz U(r,\varphi,z) = R(r) \Phi(\varphi) Z(z)
-% - In Helmholtz einsetzen, durch U teilen.
-% - Drei einzelne ODEs herausarbeiten, mit Separationskonstanten.
-% - Die phi-Gleichung -> sin/cos mit ganzzahliger Periodizität,
-%   ergibt Konstante n^2 (oder allgemeiner \nu^2).
-% - Die z-Gleichung -> Exponential/Trigonometrisch.
-% - Übrig bleibt die Radialgleichung für R(r).
-
-Wir machen den Produktansatz
+Für die Zeitabhängigkeit macht man den Separationsansatz
 \begin{equation}
-U(r, \varphi, z)
+u(x,y,t)
 =
-R(r)\, \Phi(\varphi)\, Z(z)
-\label{bessel:equation:produktansatz}
+T(t)\, v(x,y).
+\label{bessel:herleitung:eqn:zeitsep}
 \end{equation}
-und setzen ihn in die Helmholtz-Gleichung ein.
-Nach Division durch $U$ und Sortieren der Terme erhält man drei gewöhnliche Differentialgleichungen, je eine für $R(r)$, $\Phi(\varphi)$ und $Z(z)$.
-
-Aus der $\varphi$-Gleichung folgt mit der Forderung nach $2\pi$-Periodizität, dass die Separationskonstante die Form $\nu^2$ mit ganzzahligem $\nu$ haben muss
-% [TODO: Allgemeinere Argumentation bei nicht-ganzzahligem nu]
-und $\Phi(\varphi) = e^{i\nu\varphi}$ als Lösung hat.
-Die $z$-Gleichung führt auf Exponential- oder Trigonometrische Funktionen.
-
-\subsection{Die Bessel'sche Differentialgleichung
-\label{bessel:subsection:bessel-dgl}}
-% Inhalt:
-% - Aus der verbleibenden Radialgleichung wird durch Substitution x = kr
-%   die "Standardform" der Bessel-DGL.
-% - Endergebnis sauber als Satz oder hervorgehobene Gleichung.
-
-Für den Radialteil $R(r)$ verbleibt nach der Separation die Gleichung
+Einsetzen in~\eqref{bessel:herleitung:eqn:welle} und Division durch
+$c^2Tv$ ergibt
+\[
+\frac{1}{c^2}\frac{T''(t)}{T(t)}
+=
+\frac{\Delta v(x,y)}{v(x,y)}.
+\]
+Die linke Seite hängt nur von $t$ ab, die rechte nur von $x$ und $y$.
+Beide Seiten müssen daher konstant sein.
+Nennt man diese Konstante $-k^2$, so zerfällt das Problem in die
+harmonische Schwingungsgleichung $T''=-c^2k^2T$ und in die
+\emph{Helmholtz-Gleichung}
+\index{Helmholtz-Gleichung}%
 \begin{equation}
-r^2 R''(r) + r R'(r) + (k^2 r^2 - \nu^2) R(r) = 0.
-\label{bessel:equation:radial}
+\Delta v + k^2 v = 0.
+\label{bessel:herleitung:eqn:helmholtz}
 \end{equation}
-Mit der Substitution $x = kr$ und $y(x) = R(x/k)$ geht diese Gleichung in die Standardform
-\begin{equation}
-\boxed{\;
-x^2 y''(x) + x y'(x) + (x^2 - \nu^2) y(x) = 0\;
-}
-\label{bessel:equation:bessel-dgl}
-\end{equation}
-über.
-Dies ist die \emph{Bessel'sche Differentialgleichung} der Ordnung $\nu$.
-Sie ist von zweiter Ordnung, linear und homogen, und besitzt im Ursprung $x = 0$ eine reguläre Singularität.
-Wegen dieser Singularität ist der einfache Potenzreihenansatz aus Kapitel~\ref{chapter:differentialgleichungen} nicht direkt anwendbar -- der nächste Abschnitt erweitert ihn entsprechend.
+Die zeitliche Abhängigkeit ist damit erledigt, sie ist immer
+sinusförmig mit der Kreisfrequenz $\omega = ck$.
+Die ganze Information über die Form der Membran steckt in
+\eqref{bessel:herleitung:eqn:helmholtz}.
 
+%
+% Rechteck und Kreis
+%
+\subsection{Rechteck und Kreis
+\label{bessel:herleitung:subsection:rechteckkreis}}
+An dieser Stelle lohnt sich ein Vergleich, der zeigt, wo die
+Schwierigkeit liegt.
+
+Für eine rechteckige Membran mit den Seitenlängen $a$ und $b$ führt der
+Ansatz $v(x,y)=X(x)Y(y)$ auf die beiden Gleichungen
+$X''=-\alpha^2X$ und $Y''=-\beta^2Y$ mit $\alpha^2+\beta^2=k^2$.
+Beide sind Schwingungsgleichungen mit konstanten Koeffizienten, ihre
+Lösungen sind Sinus- und Kosinusfunktionen, und die Randbedingungen
+liefern
+\[
+v_{mn}(x,y)
+=
+\sin\frac{m\pi x}{a}
+\sin\frac{n\pi y}{b},
+\qquad
+m,n \in \mathbb{N}.
+\]
+Das Problem ist mit den Funktionen der elementaren Analysis
+vollständig gelöst.
+
+Bei einer kreisförmigen Membran versagt dieser Ansatz.
+Der Rand ist ein Kreis, und in kartesischen Koordinaten lässt sich die
+Randbedingung nicht in eine Bedingung an $X$ und eine an $Y$ zerlegen.
+Man muss Koordinaten wählen, in denen der Rand eine
+Koordinatenfläche ist, und das sind die Polarkoordinaten.
+Der Preis dafür ist, dass der Laplace-Operator in diesen Koordinaten
+nicht mehr konstante Koeffizienten hat.
+Genau daraus entsteht die Bessel-Gleichung.
+
+%
+% Separation in Polarkoordinaten
+%
+\subsection{Separation in Polarkoordinaten
+\label{bessel:herleitung:subsection:polar}}
+In Polarkoordinaten $x=r\cos\varphi$, $y=r\sin\varphi$ lautet der
+Laplace-Operator
+\begin{equation}
+\Delta
+=
+\frac{\partial^2}{\partial r^2}
++
+\frac{1}{r}\frac{\partial}{\partial r}
++
+\frac{1}{r^2}\frac{\partial^2}{\partial\varphi^2}.
+\label{bessel:herleitung:eqn:laplacepolar}
+\end{equation}
+% [TODO: Umrechnung des Laplace-Operators entweder in einer Fussnote
+%        andeuten oder als Übungsaufgabe auslagern]
+Die Helmholtz-Gleichung~\eqref{bessel:herleitung:eqn:helmholtz} wird
+damit zu
+\begin{equation}
+\frac{\partial^2 v}{\partial r^2}
++
+\frac{1}{r}\frac{\partial v}{\partial r}
++
+\frac{1}{r^2}\frac{\partial^2 v}{\partial\varphi^2}
++
+k^2 v
+=
+0.
+\label{bessel:herleitung:eqn:helmholtzpolar}
+\end{equation}
+Die Koeffizienten $1/r$ und $1/r^2$ sind der entscheidende Unterschied
+zum kartesischen Fall.
+Sie sind bei $r=0$ singulär, und diese Singularität wird uns im
+nächsten Abschnitt wieder begegnen.
+
+Nun separiert man ein zweites Mal, diesmal in Radius und Winkel,
+\begin{equation}
+v(r,\varphi)
+=
+R(r)\,\Phi(\varphi).
+\label{bessel:herleitung:eqn:radialsep}
+\end{equation}
+Einsetzen in~\eqref{bessel:herleitung:eqn:helmholtzpolar} und
+Multiplikation mit $r^2/(R\Phi)$ ergibt
+\[
+\frac{r^2R''(r) + rR'(r) + k^2r^2R(r)}{R(r)}
+=
+-\frac{\Phi''(\varphi)}{\Phi(\varphi)}.
+\]
+Wieder hängt die linke Seite nur von $r$ ab und die rechte nur von
+$\varphi$, beide sind also konstant.
+Wir nennen die Konstante $n^2$.
+
+Für den Winkelanteil bleibt
+\begin{equation}
+\Phi''(\varphi) + n^2\Phi(\varphi) = 0
+\label{bessel:herleitung:eqn:winkel}
+\end{equation}
+mit den Lösungen $\Phi(\varphi)=\cos n\varphi$ und
+$\Phi(\varphi)=\sin n\varphi$.
+Hier kommt eine Bedingung ins Spiel, die es beim Rechteck nicht gibt:
+die Winkelkoordinate ist periodisch, es muss
+$\Phi(\varphi+2\pi)=\Phi(\varphi)$ gelten.
+Daraus folgt $n\in\mathbb{Z}$.
+Die Separationskonstante ist also nicht frei wählbar, sondern durch die
+Geometrie auf ganze Zahlen festgelegt.
+
+%
+% Die Bessel-Differentialgleichung
+%
+\subsection{Die Bessel-Differentialgleichung
+\label{bessel:herleitung:subsection:besseldgl}}
+Für den Radialanteil bleibt
+\begin{equation}
+r^2R''(r) + rR'(r) + (k^2r^2-n^2)R(r) = 0.
+\label{bessel:herleitung:eqn:radial}
+\end{equation}
+Mit der Substitution $x=kr$ und $y(x)=R(x/k)$ verschwindet der
+Parameter $k$, denn es ist
+$R'(r)=k\,y'(x)$ und $R''(r)=k^2y''(x)$, und man erhält
+\begin{equation}
+x^2y''(x) + xy'(x) + (x^2-n^2)y(x) = 0.
+\label{bessel:herleitung:eqn:bessel}
+\end{equation}
+Das ist die \emph{Bessel-Differentialgleichung}
+\index{Bessel-Differentialgleichung}%
+der Ordnung $n$.
+
+Aus der Herleitung ergibt sich $n$ als ganze Zahl.
+Die Gleichung~\eqref{bessel:herleitung:eqn:bessel} ist aber für jeden
+reellen oder komplexen Parameter sinnvoll, und die Lösungstheorie des
+nächsten Abschnitts braucht die Ganzzahligkeit an keiner Stelle.
+Wir schreiben deshalb ab jetzt
+\begin{equation}
+x^2y'' + xy' + (x^2-\nu^2)y = 0,
+\qquad
+\nu \in \mathbb{R},\ \nu \ge 0,
+\label{bessel:herleitung:eqn:besselnu}
+\end{equation}
+und nennen $\nu$ die \emph{Ordnung}
+\index{Ordnung einer Bessel-Funktion}%
+der Gleichung.
+Halbzahlige Ordnungen treten zum Beispiel bei kugelsymmetrischen
+Problemen auf, wo dieselbe Rechnung in Kugelkoordinaten durchgeführt
+wird.
+
+Ein Blick auf~\eqref{bessel:herleitung:eqn:besselnu} zeigt schon, wo
+die Schwierigkeit liegt.
+Dividiert man durch $x^2$, so lautet die Gleichung
+\[
+y''
++
+\frac{1}{x}y'
++
+\frac{x^2-\nu^2}{x^2}y
+=
+0,
+\]
+und die Koeffizienten haben bei $x=0$ einen Pol.
+Ein gewöhnlicher Potenzreihenansatz um $x=0$, wie er in
+Abschnitt~\ref{buch:analytisch:section:potenzreihen} verwendet wurde,
+kann daher nicht funktionieren.
+Die Gleichung ist aber von genau der Bauart
+\[
+x^2y'' + p(x)\,xy' + q(x)\,y = 0
+\]
+mit den bei $0$ analytischen Funktionen $p(x)=1$ und
+$q(x)=x^2-\nu^2$, sie ist also eine fuchssche Differentialgleichung im
+Sinne von Abschnitt~\ref{buch:differentialgleichungen:section:fuchs}.
+Damit steht das Werkzeug für ihre Lösung bereits zur Verfügung.
