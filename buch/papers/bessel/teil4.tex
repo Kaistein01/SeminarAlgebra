@@ -1,0 +1,109 @@
+%
+% teil4.tex -- Anwendung: Lichtbeugung am Kreisspalt
+%
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
+%
+% !TEX root = ../../buch.tex
+% !TEX encoding = UTF-8
+%
+\section{Anwendung: Lichtbeugung am Kreisspalt
+\label{bessel:section:beugung}}
+\kopfrechts{Lichtbeugung}
+% Funktion dieses Abschnitts:
+% Erste Anwendung der entwickelten Theorie. Zeigt, wie die
+% rotationssymmetrische Geometrie der kreisförmigen Blende direkt
+% auf eine Bessel-Funktion führt -- das Airy-Pattern.
+% Kürzer halten als die mathematischen Abschnitte (1-2 Seiten).
+
+Als erste Anwendung betrachten wir die Beugung von Licht an einer kreisförmigen Öffnung.
+Dieses Problem ist von grundlegender Bedeutung in der Optik, da es das Auflösungsvermögen jedes optischen Instruments mit kreisförmiger Apertur (Teleskop, Mikroskop, Auge) begrenzt.
+
+\subsection{Vom Einzelspalt zum Kreis
+\label{bessel:subsection:vomspalt}}
+% Inhalt:
+% - Erinnerung: bei einem rechteckigen Spalt ergibt die Fraunhofer-
+%   Beugung eine sinc-Funktion.
+% - Bei einem kreisförmigen Spalt wird der Ansatz analog, nur in
+%   Polarkoordinaten in der Blendenebene.
+% - Daraus entsteht das 2D-Integral der Beugungsformel.
+
+Bei einem rechteckigen Spalt der Breite $b$ ergibt die Fraunhofer-Beugung eine Intensitätsverteilung, die durch die $\operatorname{sinc}$-Funktion beschrieben wird.
+Der Übergang von einer rechteckigen zu einer kreisförmigen Öffnung erfordert es, das Beugungsintegral in Polarkoordinaten der Blendenebene zu formulieren.
+
+\subsection{Das Beugungsintegral
+\label{bessel:subsection:beugungsintegral}}
+% Inhalt:
+% - Fraunhofer-Beugungsintegral in 2D hinschreiben.
+% - Übergang in Polarkoordinaten r, phi in der Blendenebene.
+% - Die phi-Integration liefert direkt eine Bessel-Funktion:
+%   \int_0^{2\pi} e^{i k r sin(theta) cos(phi)} d\phi = 2\pi J_0(k r sin theta)
+% - Anschliessende r-Integration über [0, R] mit der Identität
+%   \int x J_0(x) dx = x J_1(x).
+
+Die Fraunhofer-Beugungsamplitude in der Brennebene einer Linse hinter einer Apertur lautet
+\begin{equation}
+U(\theta)
+=
+C \int_{\text{Apertur}} e^{-i\vec k \cdot \vec r}\, d^2 r,
+\label{bessel:equation:fraunhofer}
+\end{equation}
+mit einer geometrieabhängigen Konstanten $C$.
+In Polarkoordinaten $\vec r = (r\cos\varphi, r\sin\varphi)$ und für eine kreisförmige Apertur vom Radius $R$ wird daraus
+\begin{equation}
+U(\theta)
+=
+C \int_0^R \int_0^{2\pi} e^{-i k r \sin\theta\, \cos\varphi}\, r\, d\varphi\, dr.
+\end{equation}
+Das innere $\varphi$-Integral ergibt mit der Integraldarstellung der Bessel-Funktion
+\begin{equation}
+\int_0^{2\pi} e^{-i z \cos\varphi}\, d\varphi
+=
+2\pi\, J_0(z)
+\label{bessel:equation:integral-J0}
+\end{equation}
+% [TODO: Diese Integraldarstellung von J_0 müsste in Abschnitt~3 oder
+% hier kurz hergeleitet werden]
+den Wert $2\pi J_0(k r \sin\theta)$.
+Mit der aus~\eqref{bessel:equation:rek2} und~\eqref{bessel:equation:J0-ableitung} ableitbaren Identität $\int_0^R x J_0(\alpha x)\, dx = (R/\alpha) J_1(\alpha R)$ folgt schliesslich
+\begin{equation}
+U(\theta)
+\propto
+\frac{J_1(k R \sin\theta)}{k R \sin\theta}.
+\label{bessel:equation:amplitude}
+\end{equation}
+
+\subsection{Das Airy-Pattern
+\label{bessel:subsection:airy}}
+% Inhalt:
+% - Intensität ist |U|^2.
+% - Das Resultat heisst Airy-Funktion bzw. Airy-Pattern.
+% - Erstes Minimum bei k R sin(theta) = j_{1,1} = 3.8317.
+% - Daraus ergibt sich das Rayleigh-Kriterium fuer das
+%   Auflösungsvermögen: sin(theta) = 1.22 lambda / D, mit D = 2R.
+
+Die beobachtete Intensität ist proportional zum Betragsquadrat der Amplitude:
+\begin{equation}
+I(\theta)
+=
+I_0 \left[\frac{2 J_1(k R \sin\theta)}{k R \sin\theta}\right]^2.
+\label{bessel:equation:airy}
+\end{equation}
+Diese Funktion heisst \emph{Airy-Funktion}; das zugehörige Beugungsmuster -- ein helles Zentralmaximum, umgeben von konzentrischen Ringen -- ist als \emph{Airy-Scheibchen} bekannt.
+
+% [TODO: Bild des Airy-Patterns einfügen]
+
+Das erste Minimum tritt dort auf, wo das Argument der Bessel-Funktion gleich der ersten Nullstelle $j_{1,1} \approx 3{,}8317$ ist, also bei
+\begin{equation}
+\sin\theta_{\min}
+=
+\frac{j_{1,1}}{kR}
+=
+\frac{j_{1,1}\, \lambda}{2\pi R}
+\approx
+1{,}22 \cdot \frac{\lambda}{D},
+\label{bessel:equation:rayleigh}
+\end{equation}
+wobei $D = 2R$ der Durchmesser der Apertur und $\lambda$ die Wellenlänge ist.
+Diese Beziehung ist das berühmte \emph{Rayleigh-Kriterium} für das Auflösungsvermögen optischer Instrumente.
+% [TODO: Kurzer Kommentar zur praktischen Bedeutung: Teleskope, Mikroskope, Auge]
+

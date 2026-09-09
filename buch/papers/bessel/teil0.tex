@@ -1,25 +1,53 @@
 %
-% einleitung.tex -- Beispiel-File für die Einleitung
+% teil0.tex -- Einleitung
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
 %
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
 %
-\section{Teil 0\label{bessel:section:teil0}}
-\kopfrechts{Teil 0}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-erat, sed diam voluptua \cite{bessel:bibtex}.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-dolor sit amet.
+\section{Einleitung\label{bessel:section:einleitung}}
+\kopfrechts{Einleitung}
+% Funktion dieses Abschnitts:
+% Den Leser abholen, motivieren und ankündigen, was im Kapitel kommt.
+% Maximal eine bis anderthalb Seiten, keine Unterabschnitte.
+%
+% Inhaltlich:
+% (a) Worum geht es? Bessel-Funktionen treten überall dort auf, wo
+%     rotationssymmetrische Probleme oder Störungen periodischer
+%     Bewegungen analysiert werden.
+% (b) Historisch: Friedrich Wilhelm Bessel (1784--1846), Astronom,
+%     führte sie 1824 in einer Arbeit über Planetenstörungen ein.
+%     Erst später kam die Anwendung auf Wellengleichungen, Wärmeleitung
+%     und Beugungsprobleme dazu.
+% (c) Verortung im Buch: Bauen auf den Potenzreihenansatz für DGL
+%     aus Kapitel~\ref{...} (Kapitel 6) auf und ergänzen ihn um
+%     den Frobenius-Fall mit regulärer Singularität.
+% (d) Ausblick auf die Kapitelstruktur: Herleitung (Abschnitt~1),
+%     Lösung (Abschnitt~2), Eigenschaften (Abschnitt~3), zwei
+%     Anwendungen (Abschnitt~4 und 5).
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.  Stet clita
-kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-amet.
+Bessel-Funktionen gehören zu den wichtigsten speziellen Funktionen der mathematischen Physik.
+Sie treten immer dann auf, wenn ein Problem eine zylindrische oder rotationssymmetrische Geometrie besitzt:
+bei der schwingenden Membran einer Trommel, bei der Wärmeleitung in einem Zylinder, bei der Beugung von Licht an einer kreisförmigen Öffnung und sogar in der Himmelsmechanik bei der Berechnung der exakten Position eines Planeten auf seiner Bahn.
 
+% [TODO: ein motivierender Satz oder ein Bild, das diese Vielfalt sichtbar macht]
+
+Historisch wurden die Funktionen, die heute Bessels Namen tragen, im Jahr 1824 von Friedrich Wilhelm Bessel
+% [TODO: Quellenangabe \cite{bessel:bibtex}]
+in einer Arbeit über die Störungen in Planetenbewegungen eingeführt.
+Bessel war Astronom, kein Mathematiker; die Funktionen entstanden also nicht aus einem rein mathematischen Bedürfnis heraus, sondern aus einem konkreten physikalischen Problem.
+Erst im weiteren Verlauf des 19.~Jahrhunderts zeigte sich, dass dieselben Funktionen auch in ganz anderen Zusammenhängen unvermeidlich auftauchen.
+
+% Verortung im Buch
+In Kapitel~\ref{chapter:differentialgleichungen} wurde gezeigt, wie sich gewisse Differentialgleichungen durch einen Potenzreihenansatz lösen lassen.
+Die Bessel'sche Differentialgleichung lässt sich nicht direkt mit diesem einfachen Ansatz behandeln, da sie eine reguläre Singularität im Ursprung besitzt.
+Das vorliegende Kapitel erweitert den Ansatz daher zum sogenannten Frobenius-Ansatz und wendet ihn auf diese physikalisch bedeutsame Gleichung an.
+
+% Kapitelübersicht
+Der weitere Aufbau ist wie folgt.
+In Abschnitt~\ref{bessel:section:herleitung} wird gezeigt, wie aus der Helmholtz-Gleichung in Zylinderkoordinaten die Bessel'sche Differentialgleichung entsteht.
+In Abschnitt~\ref{bessel:section:loesung} wird diese Gleichung mit dem Frobenius-Ansatz gelöst und die Bessel-Funktion erster Art definiert.
+Abschnitt~\ref{bessel:section:eigenschaften} stellt die wichtigsten Eigenschaften zusammen.
+Die beiden Schlussabschnitte~\ref{bessel:section:beugung} und~\ref{bessel:section:kepler} zeigen je eine Anwendung aus der Wellenoptik und der Himmelsmechanik.
 

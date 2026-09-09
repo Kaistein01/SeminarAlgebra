@@ -1,0 +1,146 @@
+%
+% teil5.tex -- Anwendung: Die Kepler-Gleichung
+%
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
+%
+% !TEX root = ../../buch.tex
+% !TEX encoding = UTF-8
+%
+\section{Anwendung: Die Kepler-Gleichung
+\label{bessel:section:kepler}}
+\kopfrechts{Kepler-Gleichung}
+% Funktion dieses Abschnitts:
+% Zweite Anwendung. Hier kommt der historische Ursprung der Bessel-
+% Funktionen zur Sprache und zugleich der Algebra-Analysis-Bogen
+% des ganzen Buches: Kepler-Gesetze (Geometrie/Algebra der Bahn)
+% führen auf eine transzendente Gleichung, deren Lösung eine
+% analytische Reihenentwicklung benötigt -- und die Koeffizienten
+% sind genau die Bessel-Funktionen.
+%
+% Wichtig: dieser Abschnitt rechtfertigt auch den Namen "Bessel-
+% Funktionen" -- Bessel war Astronom und hat die Funktionen genau
+% in diesem Kontext eingeführt.
+
+Die Bessel-Funktionen erhielten ihren Namen nicht durch ihre Rolle in der Wellenoptik, sondern durch eine ältere Anwendung in der Himmelsmechanik.
+Friedrich Wilhelm Bessel führte sie 1824 im Zusammenhang mit der Berechnung von Planetenbahnen ein.
+% [TODO: Quellenangabe Bessels Originalarbeit von 1824]
+Dieser Abschnitt zeigt, wie aus den Kepler'schen Gesetzen eine transzendente Gleichung entsteht, deren Lösung eine Fourier-Reihe mit Bessel-Funktionen als Koeffizienten besitzt.
+
+\subsection{Die Kepler'schen Gesetze
+\label{bessel:subsection:keplergesetze}}
+% Inhalt:
+% Knappe Wiederholung der drei Gesetze:
+% 1. Planetenbahnen sind Ellipsen mit der Sonne in einem Brennpunkt.
+% 2. Der Fahrstrahl überstreicht in gleichen Zeiten gleiche Flächen.
+% 3. T^2 \propto a^3.
+% Wichtig wird das zweite Gesetz: es macht den Zeit-Position-
+% Zusammenhang transzendent.
+
+Die drei Kepler'schen Gesetze (1609, 1619) beschreiben die Planetenbewegung wie folgt:
+\begin{enumerate}
+\item Die Planetenbahnen sind Ellipsen, in deren einem Brennpunkt die Sonne steht.
+\item Der Fahrstrahl von der Sonne zum Planeten überstreicht in gleichen Zeiten gleiche Flächen.
+\item Die Quadrate der Umlaufzeiten verhalten sich wie die Kuben der grossen Halbachsen, $T^2 \propto a^3$.
+\end{enumerate}
+% [TODO: Bild einer Ellipse mit Brennpunkten und Halbachsen]
+
+Während das erste und dritte Gesetz die Bahn rein \emph{geometrisch} und \emph{algebraisch} festlegen, sorgt das zweite Gesetz dafür, dass der Zusammenhang zwischen Zeit und Position auf der Bahn nicht algebraisch ausgedrückt werden kann.
+
+\subsection{Drei Anomalien
+\label{bessel:subsection:anomalien}}
+% Inhalt:
+% - Wahre Anomalie f (Winkel von der Sonne aus, also vom Brennpunkt).
+% - Exzentrische Anomalie E (Winkel vom Mittelpunkt aus, auf dem
+%   Hilfskreis um die Ellipse).
+% - Mittlere Anomalie M = 2 pi t / T, linear in der Zeit.
+% Mit einer Skizze einleuchtend.
+
+In der Himmelsmechanik werden drei Winkel verwendet, um die Position eines Planeten auf seiner Bahn anzugeben:
+\begin{itemize}
+\item Die \emph{wahre Anomalie} $f$, gemessen vom Brennpunkt (also von der Sonne) aus.
+\item Die \emph{exzentrische Anomalie} $E$, gemessen vom Mittelpunkt der Ellipse aus, auf dem die Ellipse umschreibenden Hilfskreis.
+\item Die \emph{mittlere Anomalie} $M = 2\pi t / T$, die linear mit der Zeit wächst und der wahren Anomalie eines fiktiven gleichförmig umlaufenden Planeten entspricht.
+\end{itemize}
+% [TODO: Bild mit Ellipse, Hilfskreis, eingezeichneten Winkeln f, E, M]
+
+\subsection{Die Kepler-Gleichung
+\label{bessel:subsection:keplergleichung}}
+% Inhalt:
+% - Aus dem zweiten Kepler'schen Gesetz folgt durch geometrische
+%   Überlegung: M = E - e sin(E).
+% - Das ist transzendent in E -- nicht in geschlossener Form auflösbar.
+% - Problem: gegeben M, finde E. Daraus dann f.
+
+Aus dem Flächensatz folgt durch geometrische Betrachtung der Ellipse und ihres Hilfskreises die fundamentale Beziehung
+\begin{equation}
+\boxed{\;
+M = E - e \sin E
+\;}
+\label{bessel:equation:kepler-gleichung}
+\end{equation}
+zwischen mittlerer und exzentrischer Anomalie, mit $e$ als numerischer Exzentrizität der Bahn.
+% [TODO: Herleitung über Flächenvergleich]
+Diese sogenannte \emph{Kepler-Gleichung} ist transzendent in $E$ und besitzt keine Lösung in geschlossener Form.
+Das praktische Problem besteht darin, zu gegebenem $M$ (also gegebener Zeit $t$) die exzentrische Anomalie $E$ zu bestimmen.
+
+\subsection{Fourier-Bessel-Entwicklung
+\label{bessel:subsection:fourier-bessel}}
+% Inhalt:
+% - Die Funktion E(M) - M ist ungerade und 2-pi-periodisch in M,
+%   bei festem e.
+% - Daher besitzt sie eine Fourier-Sinusreihe:
+%   E - M = \sum_{n=1}^{\infty} b_n(e) sin(n M).
+% - Die Fourier-Koeffizienten berechnen sich aus dem Integral
+%   b_n = (2/pi) \int_0^{pi} (E - M) sin(n M) dM,
+%   das sich mit der Kepler-Gleichung umformen und in eine
+%   Integraldarstellung von J_n(n e) überführen lässt.
+% - Bessel zeigte 1824 die Identität b_n(e) = 2 J_n(n e) / n.
+% - Endformel:
+%   E = M + 2 \sum_{n=1}^{\infty} (J_n(n e)/n) sin(n M).
+%
+% Hier nicht alle Details ausrechnen, sondern den Weg skizzieren
+% und den Anschluss an die Definition von J_n in Abschnitt 2 betonen.
+
+Bei festem $e$ ist die Funktion $E - M$ als Funktion von $M$ ungerade und $2\pi$-periodisch.
+Sie besitzt daher eine Fourier-Sinusreihe der Form
+\begin{equation}
+E - M
+=
+\sum_{n=1}^{\infty} b_n(e) \sin(nM).
+\label{bessel:equation:fourier-ansatz}
+\end{equation}
+Die Fourier-Koeffizienten lassen sich durch ein Integral ausdrücken, das sich nach geschickter Umformung in die Integraldarstellung der Bessel-Funktion umwandelt.
+% [TODO: Diese Rechnung detailliert ausführen oder skizzieren]
+Bessel zeigte, dass
+\begin{equation}
+b_n(e) = \frac{2}{n}\, J_n(ne)
+\label{bessel:equation:bessel-koeff}
+\end{equation}
+gilt.
+Damit ergibt sich die berühmte Reihenentwicklung
+\begin{equation}
+\boxed{\;
+E(M)
+=
+M + 2 \sum_{n=1}^{\infty} \frac{J_n(ne)}{n}\, \sin(nM).
+\;}
+\label{bessel:equation:kepler-loesung}
+\end{equation}
+Dies ist die historische Geburtsstelle der Bessel-Funktionen.
+
+\subsection{Schlussbemerkung
+\label{bessel:subsection:schluss}}
+% Inhalt:
+% Kurze Reflexion: zwei sehr unterschiedliche physikalische Probleme --
+% das eine in der Wellenoptik, das andere in der Himmelsmechanik --
+% führen auf dieselbe Funktionenklasse. Genau hier zeigt sich, was
+% das Buch "Algebra und Analysis" als Leitthema verfolgt: algebraisch
+% geprägte Strukturen (Kepler'sche Geometrie, Helmholtz-Operator in
+% Koordinaten) treffen auf rein analytische Werkzeuge (Potenzreihen,
+% Fourier-Reihen), und beides verschmilzt zu einer einzigen Familie
+% spezieller Funktionen.
+
+Mit der Beugung am Kreisspalt und der Kepler-Gleichung wurden zwei sehr unterschiedliche Phänomene betrachtet: das eine aus der Wellenoptik, das andere aus der Himmelsmechanik.
+Beide führen auf dieselbe Familie spezieller Funktionen.
+Hierin zeigt sich exemplarisch, was als Leitthema dieses Buches gilt: Die algebraisch geprägte Geometrie eines Problems -- sei es die Ellipsenbahn eines Planeten oder die kreisförmige Apertur einer Linse -- trifft auf analytische Werkzeuge wie den Potenzreihenansatz oder die Fourier-Reihe, und aus dieser Verbindung entsteht eine Funktionenklasse, die in beiden Welten gleichermassen unverzichtbar ist.
+

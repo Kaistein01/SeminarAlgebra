@@ -1,43 +1,155 @@
 %
-% teil2.tex -- Beispiel-File für teil2 
+% teil2.tex -- Lösung der Bessel-Differentialgleichung
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
 %
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
 %
-\section{Teil 2 
-\label{bessel:section:teil2}}
-\kopfrechts{Teil 2}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+\section{Lösung mit dem Frobenius-Ansatz
+\label{bessel:section:loesung}}
+\kopfrechts{Lösung}
+% Funktion dieses Abschnitts:
+% Das mathematische Kernstück. Hier wird die Bessel-DGL aus
+% Abschnitt 1 explizit gelöst und die Bessel-Funktion erster Art
+% J_nu konstruiert. Verweis auf Kapitel 6 für die Grundidee, dann
+% Erweiterung auf den Frobenius-Fall.
 
-\subsection{De finibus bonorum et malorum
-\label{bessel:subsection:bonorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
+Die Bessel'sche Differentialgleichung~\eqref{bessel:equation:bessel-dgl} besitzt im Ursprung eine reguläre Singularität.
+Der direkte Potenzreihenansatz $y(x) = \sum a_k x^k$ aus Kapitel~\ref{chapter:differentialgleichungen} liefert daher nicht immer eine Lösung.
+Wir verwenden stattdessen den verallgemeinerten Ansatz von Frobenius.
 
+\subsection{Der Frobenius-Ansatz
+\label{bessel:subsection:frobenius}}
+% Inhalt:
+% - Motivation: warum reicht der einfache Potenzreihenansatz nicht?
+%   Antwort: bei x=0 verschwinden die führenden Koeffizienten.
+% - Frobenius-Ansatz: y(x) = x^s \sum a_k x^k mit s \in \mathbb{R} (oder \mathbb{C}).
+% - Kurze Erinnerung an die allgemeine Theorie regulärer Singularitäten.
+
+Anstelle einer reinen Potenzreihe machen wir den Ansatz
+\begin{equation}
+y(x)
+=
+x^s \sum_{k=0}^{\infty} a_k x^k
+=
+\sum_{k=0}^{\infty} a_k x^{k+s},
+\qquad a_0 \neq 0,
+\label{bessel:equation:frobenius-ansatz}
+\end{equation}
+mit einem zunächst unbestimmten Exponenten $s$.
+Die Forderung $a_0 \neq 0$ legt fest, dass $s$ der tatsächliche führende Exponent der Lösung sein soll.
+
+\subsection{Indexgleichung
+\label{bessel:subsection:indexgleichung}}
+% Inhalt:
+% - y, y', y'' aus dem Frobenius-Ansatz hinschreiben.
+% - In die Bessel-DGL einsetzen.
+% - Koeffizientenvergleich der niedrigsten Potenz x^s.
+% - Indexgleichung s^2 - nu^2 = 0  =>  s = +nu oder s = -nu.
+
+Die Ableitungen des Ansatzes~\eqref{bessel:equation:frobenius-ansatz} lauten
+\begin{align}
+y'(x)  &= \sum_{k=0}^{\infty} (k+s)\, a_k x^{k+s-1}, \\
+y''(x) &= \sum_{k=0}^{\infty} (k+s)(k+s-1)\, a_k x^{k+s-2}.
+\end{align}
+Einsetzen in die Bessel-DGL~\eqref{bessel:equation:bessel-dgl} und Sortieren nach Potenzen von $x$ ergibt
+\begin{equation}
+\sum_{k=0}^{\infty} \left[(k+s)^2 - \nu^2\right] a_k x^{k+s}
++ \sum_{k=0}^{\infty} a_k x^{k+s+2}
+= 0.
+\label{bessel:equation:einsetzen}
+\end{equation}
+Der niedrigste auftretende Exponent ist $x^s$ mit Koeffizient $(s^2 - \nu^2)\, a_0$.
+Wegen $a_0 \neq 0$ folgt die \emph{Indexgleichung}
+\begin{equation}
+s^2 - \nu^2 = 0
+\qquad \Longrightarrow \qquad
+s = \pm \nu.
+\label{bessel:equation:indexgleichung}
+\end{equation}
+
+\subsection{Rekursionsformel für die Koeffizienten
+\label{bessel:subsection:rekursion}}
+% Inhalt:
+% - Wir wählen s = +nu (positiver Zweig).
+% - Koeffizient von x^{s+1} verschwindet -> a_1 = 0.
+% - Allgemeine Rekursion für a_k aus Koeffizientenvergleich.
+% - Daraus geschlossene Formel für die a_{2m}.
+
+Wir wählen zunächst die Wurzel $s = \nu$ mit $\nu \geq 0$.
+Der Koeffizientenvergleich für $x^{s+1}$ liefert
+\begin{equation}
+\bigl[(1+\nu)^2 - \nu^2\bigr] a_1 = (1 + 2\nu)\, a_1 = 0,
+\end{equation}
+und somit $a_1 = 0$, sofern $\nu \neq -\tfrac{1}{2}$.
+Für $k \geq 2$ erhält man durch Koeffizientenvergleich die Rekursion
+\begin{equation}
+\bigl[(k+\nu)^2 - \nu^2\bigr] a_k + a_{k-2} = 0
+\qquad \Longleftrightarrow \qquad
+a_k = -\frac{a_{k-2}}{k(k+2\nu)}.
+\label{bessel:equation:rekursion}
+\end{equation}
+Da $a_1 = 0$ ist, verschwinden alle ungeraden Koeffizienten.
+Die geraden Koeffizienten ergeben sich durch wiederholtes Anwenden der Rekursion zu
+\begin{equation}
+a_{2m}
+=
+\frac{(-1)^m\, a_0}{2^{2m}\, m!\, (\nu+1)(\nu+2)\cdots(\nu+m)}.
+\label{bessel:equation:koeffizienten}
+\end{equation}
+
+\subsection{Die Bessel-Funktion erster Art
+\label{bessel:subsection:Jnu}}
+% Inhalt:
+% - Standardwahl von a_0 = 1 / (2^nu \Gamma(\nu+1)).
+% - Damit wird die Reihe zur Definition von J_nu.
+% - Konvergenzradius: unendlich (das sollte begründet werden).
+
+Die übliche Normierung wählt $a_0 = 1 / \bigl(2^\nu\, \Gamma(\nu+1)\bigr)$.
+Mit dieser Wahl und der Funktionalgleichung $\Gamma(\nu+m+1) = (\nu+m)(\nu+m-1)\cdots(\nu+1)\Gamma(\nu+1)$ schreibt sich die Lösung als
+\begin{equation}
+\boxed{\;
+J_\nu(x)
+=
+\sum_{m=0}^{\infty}
+\frac{(-1)^m}{m!\, \Gamma(\nu+m+1)}
+\left(\frac{x}{2}\right)^{2m+\nu}
+\;}
+\label{bessel:equation:Jnu}
+\end{equation}
+und heisst \emph{Bessel-Funktion erster Art und Ordnung~$\nu$}.
+% [TODO: Konvergenzradius über Quotientenkriterium nachrechnen]
+Die Reihe konvergiert für alle $x \in \mathbb{R}$ (und sogar für alle $x \in \mathbb{C}$).
+
+% [TODO: Bild mit J_0, J_1, J_2 auf [0, 20], Achsenbeschriftung, Legende]
+
+\subsection{Die zweite Lösung
+\label{bessel:subsection:Ynu}}
+% Inhalt:
+% - Für s = -nu erhält man bei nicht-ganzzahligem nu eine zweite,
+%   linear unabhängige Lösung J_{-nu}.
+% - Bei ganzzahligem nu sind J_nu und J_{-nu} linear abhängig
+%   (Faktor (-1)^nu) -- Frobenius zweiter Fall.
+% - Die Bessel-Funktion zweiter Art (Neumann-Funktion) Y_nu wird
+%   eingeführt als geeignete Linearkombination. Details optional.
+
+Der zweite Zweig $s = -\nu$ der Indexgleichung liefert für nicht-ganzzahliges $\nu$ eine zweite Lösung $J_{-\nu}(x)$, die von $J_\nu(x)$ linear unabhängig ist.
+Für ganzzahliges $\nu = n$ gilt jedoch die Identität
+\begin{equation}
+J_{-n}(x) = (-1)^n\, J_n(x),
+\end{equation}
+so dass die beiden Lösungen zusammenfallen.
+% [TODO: Beweis dieser Identität, etwa über die Reihendarstellung]
+In diesem Fall wird eine zweite, linear unabhängige Lösung durch die \emph{Bessel-Funktion zweiter Art}
+\begin{equation}
+Y_\nu(x)
+=
+\lim_{\mu \to \nu}
+\frac{J_\mu(x) \cos(\mu\pi) - J_{-\mu}(x)}{\sin(\mu\pi)}
+\label{bessel:equation:Ynu}
+\end{equation}
+definiert.
+% [TODO: Diskussion des Verhaltens bei x -> 0 (Y_nu ist dort singulär)]
+Sie ist im Ursprung singulär, weshalb sie in physikalischen Problemen, die im Ursprung regulär bleiben sollen, ausgeschlossen wird.
 

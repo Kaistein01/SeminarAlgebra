@@ -1,58 +1,123 @@
 %
-% teil1.tex -- Beispiel-File für das Paper
+% teil1.tex -- Herleitung der Bessel-Differentialgleichung
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
 %
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
 %
-\section{Teil 1
-\label{bessel:section:teil1}}
-\kopfrechts{Problemstellung}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo.
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-aut fugit, sed quia consequuntur magni dolores eos qui ratione
-voluptatem sequi nesciunt
+\section{Herleitung der Bessel-Differentialgleichung
+\label{bessel:section:herleitung}}
+\kopfrechts{Herleitung}
+% Funktion dieses Abschnitts:
+% Zeigen, wie die Bessel'sche DGL aus einem konkreten physikalischen
+% Problem entsteht. Das ist der "Aha"-Moment des Kapitels.
+% Roter Faden: Wellengleichung -> stationäre Lösung (Helmholtz) ->
+% Zylinderkoordinaten -> Separation -> Bessel-DGL für den Radialteil.
+
+Bevor wir die Bessel'sche Differentialgleichung analysieren, soll gezeigt werden, woher sie kommt.
+Wir leiten sie aus einem klassischen physikalischen Problem her: der Helmholtz-Gleichung in Zylinderkoordinaten.
+
+\subsection{Die Wellengleichung und die Helmholtz-Gleichung
+\label{bessel:subsection:helmholtz}}
+% Inhalt:
+% - Wellengleichung in 2D/3D: u_tt = c^2 \Delta u.
+% - Stationärer Ansatz mit harmonischer Zeitabhängigkeit:
+%   u(\vec x, t) = U(\vec x) e^{i\omega t}
+% - Einsetzen liefert die Helmholtz-Gleichung \Delta U + k^2 U = 0
+%   mit k = \omega / c.
+
+Die räumliche Ausbreitung von Wellen wird durch die Wellengleichung
 \begin{equation}
-\int_a^b x^2\, dx
+\frac{\partial^2 u}{\partial t^2}
 =
-\left[ \frac13 x^3 \right]_a^b
-=
-\frac{b^3-a^3}3.
-\label{bessel:equation1}
+c^2 \Delta u
+\label{bessel:equation:wellen}
 \end{equation}
-Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-consectetur, adipisci velit, sed quia non numquam eius modi tempora
-incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+beschrieben, wobei $\Delta$ den Laplace-Operator und $c$ die Ausbreitungsgeschwindigkeit bezeichnet.
+Wir suchen Lösungen mit harmonischer Zeitabhängigkeit der Form
+\begin{equation}
+u(\vec x, t)
+=
+U(\vec x)\, e^{i\omega t}.
+\label{bessel:equation:ansatz-zeit}
+\end{equation}
+Einsetzen in~\eqref{bessel:equation:wellen} liefert für die räumliche Funktion $U$ die Helmholtz-Gleichung
+\begin{equation}
+\Delta U + k^2 U = 0,
+\qquad
+k = \frac{\omega}{c}.
+\label{bessel:equation:helmholtz}
+\end{equation}
+% [TODO: kurzer Kommentar dazu, dass k die Wellenzahl ist]
 
-Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
-Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-esse quam nihil molestiae consequatur, vel illum qui dolorem eum
-fugiat quo voluptas nulla pariatur?
+\subsection{Zylinderkoordinaten
+\label{bessel:subsection:zylinderkoordinaten}}
+% Inhalt:
+% - Laplace-Operator in Zylinderkoordinaten (r, phi, z) explizit hinschreiben.
+% - Argumentieren, warum diese Koordinaten bei rotationssymmetrischen
+%   Problemen die "natürlichen" sind.
 
-\subsection{De finibus bonorum et malorum
-\label{bessel:subsection:finibus}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga \eqref{bessel:equation1}.
+Bei Problemen mit zylindrischer Symmetrie ist es zweckmässig, in Zylinderkoordinaten $(r, \varphi, z)$ zu rechnen.
+Der Laplace-Operator nimmt in diesen Koordinaten die Form
+\begin{equation}
+\Delta U
+=
+\frac{1}{r}\frac{\partial}{\partial r}\!\left(r\frac{\partial U}{\partial r}\right)
++ \frac{1}{r^2}\frac{\partial^2 U}{\partial \varphi^2}
++ \frac{\partial^2 U}{\partial z^2}
+\label{bessel:equation:laplace-zylinder}
+\end{equation}
+an.
+% [TODO: kurze Herleitung oder Verweis auf Standardliteratur]
 
-Et harum quidem rerum facilis est et expedita distinctio
-\ref{bessel:section:teil2}.
-Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-impedit quo minus id quod maxime placeat facere possimus, omnis
-voluptas assumenda est, omnis dolor repellendus
-\ref{bessel:section:teil3}.
-Temporibus autem quibusdam et aut officiis debitis aut rerum
-necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-molestiae non recusandae.
-Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
-voluptatibus maiores alias consequatur aut perferendis doloribus
-asperiores repellat.
+\subsection{Separationsansatz
+\label{bessel:subsection:separation}}
+% Inhalt:
+% - Produktansatz U(r,\varphi,z) = R(r) \Phi(\varphi) Z(z)
+% - In Helmholtz einsetzen, durch U teilen.
+% - Drei einzelne ODEs herausarbeiten, mit Separationskonstanten.
+% - Die phi-Gleichung -> sin/cos mit ganzzahliger Periodizität,
+%   ergibt Konstante n^2 (oder allgemeiner \nu^2).
+% - Die z-Gleichung -> Exponential/Trigonometrisch.
+% - Übrig bleibt die Radialgleichung für R(r).
 
+Wir machen den Produktansatz
+\begin{equation}
+U(r, \varphi, z)
+=
+R(r)\, \Phi(\varphi)\, Z(z)
+\label{bessel:equation:produktansatz}
+\end{equation}
+und setzen ihn in die Helmholtz-Gleichung ein.
+Nach Division durch $U$ und Sortieren der Terme erhält man drei gewöhnliche Differentialgleichungen, je eine für $R(r)$, $\Phi(\varphi)$ und $Z(z)$.
+
+Aus der $\varphi$-Gleichung folgt mit der Forderung nach $2\pi$-Periodizität, dass die Separationskonstante die Form $\nu^2$ mit ganzzahligem $\nu$ haben muss
+% [TODO: Allgemeinere Argumentation bei nicht-ganzzahligem nu]
+und $\Phi(\varphi) = e^{i\nu\varphi}$ als Lösung hat.
+Die $z$-Gleichung führt auf Exponential- oder Trigonometrische Funktionen.
+
+\subsection{Die Bessel'sche Differentialgleichung
+\label{bessel:subsection:bessel-dgl}}
+% Inhalt:
+% - Aus der verbleibenden Radialgleichung wird durch Substitution x = kr
+%   die "Standardform" der Bessel-DGL.
+% - Endergebnis sauber als Satz oder hervorgehobene Gleichung.
+
+Für den Radialteil $R(r)$ verbleibt nach der Separation die Gleichung
+\begin{equation}
+r^2 R''(r) + r R'(r) + (k^2 r^2 - \nu^2) R(r) = 0.
+\label{bessel:equation:radial}
+\end{equation}
+Mit der Substitution $x = kr$ und $y(x) = R(x/k)$ geht diese Gleichung in die Standardform
+\begin{equation}
+\boxed{\;
+x^2 y''(x) + x y'(x) + (x^2 - \nu^2) y(x) = 0\;
+}
+\label{bessel:equation:bessel-dgl}
+\end{equation}
+über.
+Dies ist die \emph{Bessel'sche Differentialgleichung} der Ordnung $\nu$.
+Sie ist von zweiter Ordnung, linear und homogen, und besitzt im Ursprung $x = 0$ eine reguläre Singularität.
+Wegen dieser Singularität ist der einfache Potenzreihenansatz aus Kapitel~\ref{chapter:differentialgleichungen} nicht direkt anwendbar -- der nächste Abschnitt erweitert ihn entsprechend.
 

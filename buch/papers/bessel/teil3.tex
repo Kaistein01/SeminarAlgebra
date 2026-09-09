@@ -1,43 +1,110 @@
 %
-% teil3.tex -- Beispiel-File für Teil 3
+% teil3.tex -- Eigenschaften der Bessel-Funktionen
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
 %
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
 %
-\section{Teil 3
-\label{bessel:section:teil3}}
-\kopfrechts{Teil 3}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+\section{Eigenschaften
+\label{bessel:section:eigenschaften}}
+\kopfrechts{Eigenschaften}
+% Funktion dieses Abschnitts:
+% Eine Werkzeugkiste, die der Leser für die Anwendungen braucht.
+% Knapp halten -- nicht jede Identität beweisen, sondern die
+% wichtigsten Eigenschaften zusammentragen und je nach Bedarf einen
+% Beweis exemplarisch zeigen.
 
-\subsection{De finibus bonorum et malorum
-\label{bessel:subsection:malorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
+\subsection{Rekursionsformeln
+\label{bessel:subsection:rekursionsformeln}}
+% Inhalt:
+% Die zwei wichtigen Identitäten:
+%   J_{\nu-1}(x) + J_{\nu+1}(x) = (2\nu/x) J_\nu(x)
+%   J_{\nu-1}(x) - J_{\nu+1}(x) = 2 J_\nu'(x)
+% Daraus folgt insbesondere J_0'(x) = -J_1(x).
+% Exemplarisch eine Identität aus der Reihendarstellung beweisen.
 
+Aus der Reihendarstellung~\eqref{bessel:equation:Jnu} lassen sich durch Termvergleich zwei zentrale Identitäten herleiten:
+\begin{align}
+J_{\nu-1}(x) + J_{\nu+1}(x) &= \frac{2\nu}{x}\, J_\nu(x),
+\label{bessel:equation:rek1} \\
+J_{\nu-1}(x) - J_{\nu+1}(x) &= 2\, J_\nu'(x).
+\label{bessel:equation:rek2}
+\end{align}
+% [TODO: Beweis einer der beiden Identitäten direkt aus der Reihe]
+Als Spezialfall ergibt sich aus~\eqref{bessel:equation:rek2} die nützliche Identität
+\begin{equation}
+J_0'(x) = - J_1(x).
+\label{bessel:equation:J0-ableitung}
+\end{equation}
+
+\subsection{Nullstellen
+\label{bessel:subsection:nullstellen}}
+% Inhalt:
+% - J_nu hat abzählbar unendlich viele positive Nullstellen.
+% - Sie sind nicht in geschlossener Form bekannt, aber tabelliert
+%   und durch asymptotische Formeln näherungsweise gegeben.
+% - Notation: j_{nu,m} = m-te positive Nullstelle von J_nu.
+% - Tabelle mit ein paar Werten für J_0, J_1.
+
+Jede Bessel-Funktion $J_\nu(x)$ mit $\nu \geq 0$ besitzt unendlich viele positive Nullstellen.
+Wir bezeichnen die $m$-te positive Nullstelle von $J_\nu$ mit $j_{\nu,m}$.
+% [TODO: Tabelle mit den ersten Nullstellen von J_0 und J_1]
+% Beispielwerte: j_{0,1} = 2.4048, j_{0,2} = 5.5201, j_{1,1} = 3.8317, ...
+Diese Nullstellen sind nicht in geschlossener Form bekannt, lassen sich jedoch numerisch mit beliebiger Genauigkeit bestimmen.
+Für grosse $m$ gilt die asymptotische Formel
+\begin{equation}
+j_{\nu,m} \approx \left(m + \frac{\nu}{2} - \frac{1}{4}\right)\pi.
+\label{bessel:equation:nullstellen-asymptotik}
+\end{equation}
+
+\subsection{Orthogonalität
+\label{bessel:subsection:orthogonalitaet}}
+% Inhalt:
+% - Auf dem Intervall [0,1] gilt mit Gewicht x:
+%   \int_0^1 x J_\nu(j_{\nu,m} x) J_\nu(j_{\nu,n} x) dx
+%     = \delta_{mn} (1/2) J_{\nu+1}(j_{\nu,m})^2.
+% - Daraus folgt die Fourier-Bessel-Reihe als Verallgemeinerung
+%   der gewöhnlichen Fourier-Reihe.
+
+Die Bessel-Funktionen bilden ein orthogonales System bezüglich des Gewichts $x$ auf dem Intervall $[0,1]$.
+Genauer gilt für alle $m, n \in \mathbb{N}$
+\begin{equation}
+\int_0^1 x\, J_\nu(j_{\nu,m} x)\, J_\nu(j_{\nu,n} x)\, dx
+=
+\frac{1}{2}\, J_{\nu+1}(j_{\nu,m})^2\, \delta_{mn}.
+\label{bessel:equation:orthogonalitaet}
+\end{equation}
+% [TODO: Beweis -- Standardargument über Sturm-Liouville oder direktes Nachrechnen]
+Diese Orthogonalität ist die Grundlage für die Fourier-Bessel-Entwicklung, mit deren Hilfe sich Funktionen auf rotationssymmetrischen Gebieten in Reihen aus Bessel-Funktionen entwickeln lassen.
+
+\subsection{Asymptotisches Verhalten
+\label{bessel:subsection:asymptotik}}
+% Inhalt:
+% - Für x -> 0: J_nu(x) \sim (x/2)^nu / Gamma(nu+1).
+% - Für x -> \infty:
+%   J_nu(x) \sim sqrt(2/(pi x)) cos(x - nu pi/2 - pi/4).
+% - Damit ist klar: Bessel-Funktionen sehen für grosse Argumente
+%   wie gedämpfte Kosinus-Schwingungen aus (Amplitude ~ 1/sqrt(x)).
+
+Für kleine Argumente gilt direkt aus der Reihendarstellung
+\begin{equation}
+J_\nu(x)
+\sim
+\frac{1}{\Gamma(\nu+1)}\left(\frac{x}{2}\right)^\nu
+\qquad (x \to 0).
+\label{bessel:equation:asymptotik-klein}
+\end{equation}
+Für grosse Argumente lässt sich zeigen, dass
+\begin{equation}
+J_\nu(x)
+\sim
+\sqrt{\frac{2}{\pi x}}\,
+\cos\!\left(x - \frac{\nu \pi}{2} - \frac{\pi}{4}\right)
+\qquad (x \to \infty).
+\label{bessel:equation:asymptotik-gross}
+\end{equation}
+% [TODO: Skizze des Beweises oder Verweis auf Literatur (z.B. Watson)]
+Die Bessel-Funktion verhält sich also für grosse $x$ wie eine mit $1/\sqrt{x}$ abklingende Kosinus-Schwingung.
+Diese Eigenschaft ist besonders im Hinblick auf die im nächsten Abschnitt diskutierte Lichtbeugung von Bedeutung.
 

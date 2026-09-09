@@ -1,0 +1,155 @@
+%
+% teil6.tex -- Modifizierte Bessel-Funktionen
+%
+% (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
+%
+% !TEX root = ../../buch.tex
+% !TEX encoding = UTF-8
+%
+\section{Modifizierte Bessel-Funktionen
+\label{bessel:section:modifiziert}}
+\kopfrechts{Modifizierte Bessel-Funktionen}
+% Funktion dieses Abschnitts:
+% Ergänzung zum bisher behandelten oszillatorischen Fall. Die
+% modifizierte Bessel-DGL unterscheidet sich nur durch ein
+% Vorzeichen, führt aber auf Funktionen mit exponentiellem statt
+% oszillierendem Verhalten -- analog zum Verhältnis zwischen
+% Kosinus und Cosinus Hyperbolicus.
+%
+% Empfohlene Position: nach teil3 (Eigenschaften), vor teil4
+% (Lichtbeugung). In main.tex entsprechend einbinden.
+
+In Abschnitt~\ref{bessel:section:herleitung} entstand die Bessel-DGL aus der Helmholtz-Gleichung mit reellem Wellenzahlquadrat $k^2 > 0$.
+Bei stationären Diffusions- oder Wärmeleitungsproblemen sowie bei Wellenleitern im evaneszenten Bereich tritt jedoch effektiv ein \emph{negatives} Wellenzahlquadrat auf.
+Das führt auf eine leicht abgeänderte Differentialgleichung, deren Lösungen sich grundlegend anders verhalten.
+
+\subsection{Die modifizierte Bessel-Differentialgleichung
+\label{bessel:subsection:mod-dgl}}
+% Inhalt:
+% - Ausgangspunkt: gleiche Helmholtz-Separation wie in teil1, aber
+%   mit k^2 -> -k^2 (oder z-Abhängigkeit cosh/sinh statt cos/sin).
+% - Substitution x = kr liefert die modifizierte Bessel-DGL.
+% - Alternativ: x -> ix in der gewöhnlichen Bessel-DGL einsetzen.
+
+Geht man bei der Separation der Helmholtz-Gleichung von einer $z$-Abhängigkeit der Form $\cosh(kz), \sinh(kz)$ statt $\cos(kz), \sin(kz)$ aus -- wie es etwa bei stationären Problemen oder bei Wellenleitern mit imaginärer Wellenzahl der Fall ist -- so wechselt das Vorzeichen des $k^2$-Terms in der Radialgleichung~\eqref{bessel:equation:radial}.
+Nach der gleichen Substitution $x = kr$ erhält man die \emph{modifizierte Bessel'sche Differentialgleichung}
+\begin{equation}
+\boxed{\;
+x^2 y''(x) + x y'(x) - (x^2 + \nu^2) y(x) = 0\;
+}
+\label{bessel:equation:mod-bessel-dgl}
+\end{equation}
+Im Vergleich mit~\eqref{bessel:equation:bessel-dgl} ist lediglich das Vorzeichen vor $x^2$ umgekehrt.
+Formal lässt sich diese Gleichung auch durch die Substitution $x \to ix$ in der gewöhnlichen Bessel-DGL gewinnen.
+% [TODO: kurzer Nachweis dieser Tatsache]
+
+\subsection{Die modifizierte Bessel-Funktion erster Art
+\label{bessel:subsection:Inu}}
+% Inhalt:
+% - Wieder Frobenius-Ansatz; die Rechnung läuft praktisch identisch
+%   zu teil2 ab, nur dass das Vorzeichen in der Rekursion wechselt.
+% - Endergebnis: alternierende Vorzeichen fallen weg.
+% - Definition I_nu als Reihe; Beziehung I_nu(x) = i^{-nu} J_nu(ix).
+
+Der Frobenius-Ansatz aus Abschnitt~\ref{bessel:section:loesung} lässt sich unverändert auf~\eqref{bessel:equation:mod-bessel-dgl} anwenden.
+Die Indexgleichung $s^2 - \nu^2 = 0$ bleibt dieselbe; in der Rekursion~\eqref{bessel:equation:rekursion} wechselt jedoch das Vorzeichen, so dass die alternierenden Faktoren $(-1)^m$ entfallen.
+Mit derselben Normierung wie in~\eqref{bessel:equation:Jnu} ergibt sich die \emph{modifizierte Bessel-Funktion erster Art}
+\begin{equation}
+\boxed{\;
+I_\nu(x)
+=
+\sum_{m=0}^{\infty}
+\frac{1}{m!\, \Gamma(\nu+m+1)}
+\left(\frac{x}{2}\right)^{2m+\nu}
+\;}
+\label{bessel:equation:Inu}
+\end{equation}
+Sie steht mit der gewöhnlichen Bessel-Funktion in der Beziehung
+\begin{equation}
+I_\nu(x) = i^{-\nu}\, J_\nu(ix).
+\label{bessel:equation:Inu-Jnu}
+\end{equation}
+Da in~\eqref{bessel:equation:Inu} alle Reihenglieder positiv sind, ist $I_\nu(x)$ für $x > 0$ streng monoton wachsend und hat keine Nullstellen.
+Das Verhalten ist also exponentiell wachsend, nicht oszillatorisch.
+
+\subsection{Die modifizierte Bessel-Funktion zweiter Art
+\label{bessel:subsection:Knu}}
+% Inhalt:
+% - Wie bei Y_nu: bei ganzzahligem nu sind I_nu und I_{-nu} linear
+%   abhängig. Eine zweite, unabhängige Lösung wird gebraucht.
+% - Konvention: die Macdonald-Funktion K_nu.
+%   K_nu(x) = (pi/2) [I_{-nu}(x) - I_nu(x)] / sin(nu pi),
+%   bei ganzzahligem nu als Grenzwert.
+% - Wichtig: K_nu(x) -> 0 für x -> infinity, d.h. sie ist die
+%   im Unendlichen abklingende Lösung.
+% - Singularität bei x = 0.
+
+Die zweite linear unabhängige Lösung der modifizierten Bessel-DGL wird als \emph{Macdonald-Funktion} oder \emph{modifizierte Bessel-Funktion zweiter Art} bezeichnet und ist durch
+\begin{equation}
+K_\nu(x)
+=
+\frac{\pi}{2}\,
+\frac{I_{-\nu}(x) - I_\nu(x)}{\sin(\nu\pi)}
+\label{bessel:equation:Knu}
+\end{equation}
+definiert, wobei für ganzzahliges $\nu$ der entsprechende Grenzwert zu bilden ist.
+% [TODO: Bemerkung zum Grenzwert bei ganzzahligem nu, analog zu Y_nu]
+Im Gegensatz zu $I_\nu$ klingt $K_\nu(x)$ für $x \to \infty$ exponentiell ab, ist dafür aber im Ursprung singulär.
+In physikalischen Anwendungen wählt man $I_\nu$ als reguläre Lösung im Inneren eines Zylinders und $K_\nu$ als abklingende Lösung im Aussenraum.
+
+\subsection{Asymptotisches Verhalten
+\label{bessel:subsection:mod-asymptotik}}
+% Inhalt:
+% - I_nu(x) ~ (x/2)^nu / Gamma(nu+1) für x -> 0
+% - I_nu(x) ~ e^x / sqrt(2 pi x) für x -> infty
+% - K_nu(x) ~ sqrt(pi/(2x)) e^{-x} für x -> infty
+% - K_0(x) ~ -ln(x) für x -> 0 (logarithmische Singularität)
+% - Sonst K_nu(x) ~ (Gamma(nu)/2)(2/x)^nu für nu > 0.
+
+Aus der Reihendarstellung~\eqref{bessel:equation:Inu} folgt für kleine Argumente
+\begin{equation}
+I_\nu(x)
+\sim
+\frac{1}{\Gamma(\nu+1)}\left(\frac{x}{2}\right)^\nu
+\qquad (x \to 0).
+\label{bessel:equation:Inu-klein}
+\end{equation}
+Für grosse Argumente gelten die asymptotischen Formeln
+\begin{align}
+I_\nu(x) &\sim \frac{e^x}{\sqrt{2\pi x}}
+\qquad (x \to \infty),
+\label{bessel:equation:Inu-gross} \\
+K_\nu(x) &\sim \sqrt{\frac{\pi}{2x}}\, e^{-x}
+\qquad (x \to \infty).
+\label{bessel:equation:Knu-gross}
+\end{align}
+Während $J_\nu$ und $Y_\nu$ also wie gedämpfte Schwingungen wirken (vgl.~\eqref{bessel:equation:asymptotik-gross}), verhalten sich $I_\nu$ und $K_\nu$ wie exponentiell wachsende beziehungsweise abklingende Funktionen.
+Das Begriffspaar gewöhnliche/modifizierte Bessel-Funktionen ist damit vollständig analog zum Paar trigonometrische/hyperbolische Funktionen.
+% [TODO: Bild oder Tabelle, die J_0, Y_0 vs. I_0, K_0 visualisiert]
+
+\subsection{Anwendungsbeispiel: Stationäre Wärmeleitung im Zylinder
+\label{bessel:subsection:mod-anwendung}}
+% Optionaler Anwendungsabschnitt -- kann auch weggelassen werden,
+% falls das Kapitel sonst zu lang wird.
+%
+% Inhalt:
+% - Stationäre Wärmeleitungsgleichung: Delta T = 0 in einem
+%   unendlich langen Zylinder, mit gegebenen Randwerten an
+%   Mantel (z.B. T(R, z) = f(z) periodisch in z).
+% - Separationsansatz T = R(r) Z(z) mit Z = exp(ikz).
+% - Radialgleichung wird zur modifizierten Bessel-DGL.
+% - Im Inneren (regulär bei r=0) wählt man I_0(kr); im Aussenraum
+%   K_0(kr).
+% - Damit lassen sich konkrete Randwertprobleme lösen.
+
+Als kurzes Anwendungsbeispiel betrachten wir die stationäre Temperaturverteilung $T(r, z)$ in einem unendlich langen, rotationssymmetrischen Zylinder.
+% [TODO: Skizze des Aufbaus mit Zylinder, Koordinatensystem, Randbedingungen]
+Die stationäre Wärmeleitungsgleichung lautet
+\begin{equation}
+\Delta T = 0,
+\end{equation}
+und mit dem Separationsansatz $T(r, z) = R(r) e^{ikz}$ ergibt sich für den Radialteil genau die modifizierte Bessel-DGL.
+Die im Inneren ($r < R_0$) reguläre Lösung ist $I_0(kr)$, im Aussenraum ($r > R_0$) wählt man die abklingende Lösung $K_0(kr)$.
+Damit lassen sich Randwertprobleme der stationären Wärmeleitung in zylindrischer Geometrie explizit lösen.
+% [TODO: vollständige Durchrechnung eines konkreten Beispiels]
+
