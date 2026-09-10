@@ -21,20 +21,20 @@ $z$-Achse mit der Quaternion $0 + 0i + 0j + 1k$ durchgeführt werden.
 Der Realteil gibt den Winkel der 
 Drehung an. Dafür wird die eulersche Drehformel in der Form
 \begin{equation*}
-    e^{i\theta} = \cos(\theta) + i\sin(\theta)
+    e^{i\vartheta} = \cos(\vartheta) + i\sin(\vartheta)
 \end{equation*}
-verwendet, welche bei den komplexen Zahlen eine Drehung um $\theta$ 
+verwendet, welche bei den komplexen Zahlen eine Drehung um $\vartheta$ 
 beim Nullpunkt in der komplexen Ebene beschreibt. Für Quaternionen 
 wird die Formel erweitert, sodass eine Drehung um eine beliebige 
 Achse durchgeführt werden kann. Die Achse wird durch einen 
 Einheitsvektor beschrieben, welcher die Richtung der Achse angibt. 
-Der Winkel $\theta$ gibt, gleich wie bei den komplexen Zahlen, 
+Der Winkel $\vartheta$ gibt, gleich wie bei den komplexen Zahlen, 
 das Ausmass der Drehung an. Damit kann eine Quaternion für eine 
 Drehung um eine beliebige Achse mit der Formel
 \begin{equation*}
-    q = e^{\theta(xi + yj + zk)} 
-    = \cos \left(\theta\right) 
-    + \frac{xi + yj + zk}{\sqrt{x^2 + y^2 + z^2}}\sin\left(\theta\right)
+    q = e^{\vartheta(xi + yj + zk)} 
+    = \cos \left(\vartheta\right) 
+    + \frac{xi + yj + zk}{\sqrt{x^2 + y^2 + z^2}}\sin\left(\vartheta\right)
 \end{equation*}
 berechnet werden. Der Bruch vor dem Sinus-Term stellt sicher, dass 
 der Imaginärteil der Quaternion ein Einheitsvektor ist. Die Formel 
@@ -76,7 +76,7 @@ Koordinatensystem darzustellen. Abbildung \ref{qa:fig:Drehung} zeigt in vier
 Schritten die Drehung des vorherigen Beispiels. Zusätzlich wurde ein Würfel mit 
 den Kantenlängen $1$ in das Koordinatensystem eingefügt, um das Verhalten des Raumes 
 zu verdeutlichen.
-Alternativ kann die Animation zu dieser Drehung über den QR Code \ref{qa:fig:QRDrehung} abgespielt werden.
+Alternativ kann die Animation zu dieser Drehung über den beiliegenden QR Code abgespielt werden.
 
 \begin{figure}
     \centering
@@ -106,18 +106,18 @@ Alternativ kann die Animation zu dieser Drehung über den QR Code \ref{qa:fig:QR
             \includegraphics[width=\textwidth,trim=80 160 40 130,clip]{papers/qa/img/Quaternion_rot_4.png}}
     \end{minipage}
     \caption{Visualisierung der Multiplikation $P_{1L} = q \cdot P_1$ mit
-    $q = k$}
+    $q = k$. In der Ausgangslage zeigen der rote, grüne und blaue Pfeil 
+    im dreidimensionalen koordinatensystem auf die $x,y,z$-Achsen und 
+    repräsentieren die imaginären $i,j,k$-Achsen,
+    während der gelbe Pfeil im zweidimensionalen Koordinatensystem in die 
+    reelle Achse zeigt. Der gelbe Pfeil steht orthogonal zu allen anderen 
+    Pfeilen, in der vierten Dimension. Der rot markierte Punkt $P_1$ liegt 
+    auf $(1,0,0)$. Schritt für Schritt wird der Punkt um 90° um die 
+    $z$-Achse gedreht, bis er in der Endlage auf $(0,0,0)$ liegt. Dabei 
+    bewirkt die Multiplikation die Verschiebung des Punktes in die vierte 
+    Dimension, sodass der Punkt nicht mehr im dreidimensionalen Raum liegt.}
     \label{qa:fig:Drehung}
 \end{figure}
-
-% Im LinAlg-QR Style einfügen
-% \begin{figure}
-%     \centering
-%     \qrcode[height=3cm]{https://youtu.be/7kv7XFGp4ns}
-%     \caption{QR-Code zum Video mit der Animation der Drehung um die
-%     $z$-Achse.}
-%     \label{qa:fig:QRDrehung}
-% \end{figure}
 
 Der rote, grüne und blaue Pfeil in den Bildern zeigt jeweils in 
 die $x,y,z$-Achsen und repräsentieren die imaginären $i,j,k$-Achsen. 
@@ -154,7 +154,7 @@ Von Rechts würde die Multiplikation
     = jk + k^2 
     = i - 1
 \end{equation*}
-lauten, welches dem Punkt $(1,0,0)$ entspricht. Von Rechts wurde 
+lauten, was dem Punkt $(1,0,0)$ entspricht. Von Rechts wurde 
 der Punkt also um 90° in umgekehrter Drehrichtung um die $z$-Achse 
 gedreht. Auch hier wurde der $z$-Anteil des Punktes auf 0 
 reduziert, mit Realteil $-1$.
@@ -216,13 +216,12 @@ um 90° um die $z$-Achse ergibt sich
 Es ist zu beachten, dass nun eine 180° Drehung durchgeführt wurde, 
 da die Multiplikation von Links und Rechts jeweils eine 90° Drehung 
 bewirkt. Das heisst, um eine Drehung um 90° zu erreichen, muss der 
-Winkel $\theta$ in der Berechnung der Quaternion $q$ auf $\frac
-{\pi}{4}$ gesetzt werden. Um die Drehquaternion zu berechnen, wird 
-die Formel
+Winkel $\vartheta$ in der Berechnung der Quaternion $q$ halbiert werden,
+also $\vartheta = \frac{\pi}{4}$. Somit wird die Formel wie folgt umgestellt,
 \begin{equation*}
-    q = \cos\left(\frac{\theta}{2}\right) 
-    + \frac{xi + yj + zk}{|x + y + z|}
-    \sin\left(\frac{\theta}{2}\right)
+    q = \cos\left(\frac{\vartheta}{2}\right) 
+    + \frac{xi + yj + zk}{\sqrt{x^2 + y^2 + z^2}}
+    \sin\left(\frac{\vartheta}{2}\right)
 \end{equation*}
-so umgestellt, dass der Winkel $\theta$ halbiert wird.
+sodass der Punkt tatsächlich um den gewünschten Winkel $\vartheta$ gedreht wird.
 
