@@ -12,28 +12,23 @@
 \kopfrechts{Eigenschaften}
 %
 % Dieser Abschnitt ist der Werkzeugkasten. Alles, was hier steht, wird
-% später gebraucht:
+% später gebraucht.
 %   - Rekursionsformeln       -> Rechnen allgemein
 %   - Integraldarstellung     -> teil6 (Kepler), das ist die Brücke!
 %   - Nullstellen             -> Membran, teil5 (Airy)
 %   - Orthogonalität          -> Fourier-Bessel-Reihe, teil6
 %   - Asymptotik              -> teil5 und Vergleich mit cos
 %
-Die Reihe~\eqref{bessel:loesung:eqn:jnu} definiert die
-Bessel-Funktionen, ist zum Rechnen aber unhandlich.
-Dieser Abschnitt stellt die Eigenschaften zusammen, mit denen man
-tatsächlich arbeitet.
-Es lohnt sich, dabei immer den Vergleich mit den trigonometrischen
-Funktionen im Auge zu behalten: fast jede Eigenschaft von $J_\nu$ hat
-ein Gegenstück bei $\cos$ und $\sin$.
-
+Die Reihe~\eqref{bessel:loesung:eqn:jnu} definiert die Bessel-Funktionen, ist zum Rechnen aber unhandlich.
+Dieser Abschnitt stellt die Eigenschaften zusammen, mit denen man tatsächlich arbeitet.
+Es lohnt sich, dabei immer den Vergleich mit den trigonometrischen Funktionen im Auge zu behalten.
+Fast jede Eigenschaft von $J_\nu$ hat ein Gegenstück bei $\cos$ und $\sin$.
 %
 % Rekursionsformeln
 %
 \subsection{Rekursionsformeln
 \label{bessel:eigenschaften:subsection:rekursion}}
-Aus der Reihendarstellung lassen sich zwei Ableitungsformeln direkt
-ablesen.
+Aus der Reihendarstellung lassen sich zwei Ableitungsformeln direkt ablesen.
 
 \begin{satz}
 \label{bessel:eigenschaften:satz:ableitung}
@@ -52,7 +47,7 @@ x^{\nu} J_{\nu-1}(x),
 \label{bessel:eigenschaften:eqn:ableitung2}
 \end{align}
 \end{satz}
-
+ 
 \begin{proof}
 Aus~\eqref{bessel:loesung:eqn:jnu} folgt
 \[
@@ -62,8 +57,7 @@ x^\nu J_\nu(x)
 \frac{(-1)^k}{k!\,\Gamma(\nu+k+1)}
 \frac{x^{2k+2\nu}}{2^{2k+\nu}}.
 \]
-Gliedweises Differenzieren ist innerhalb des Konvergenzbereiches
-erlaubt und ergibt
+Gliedweises Differenzieren ist innerhalb des Konvergenzbereiches erlaubt und ergibt
 \[
 \frac{d}{dx}
 \bigl( x^\nu J_\nu(x) \bigr)
@@ -72,16 +66,12 @@ erlaubt und ergibt
 \frac{(-1)^k (2k+2\nu)}{k!\,\Gamma(\nu+k+1)}
 \frac{x^{2k+2\nu-1}}{2^{2k+\nu}}.
 \]
-Mit $\Gamma(\nu+k+1)=(\nu+k)\Gamma(\nu+k)$ kürzt sich der Faktor
-$2(k+\nu)$ weg, und es bleibt genau die Reihe von
-$x^\nu J_{\nu-1}(x)$.
+Mit $\Gamma(\nu+k+1)=(\nu+k)\Gamma(\nu+k)$ kürzt sich der Faktor $2(k+\nu)$ weg, und es bleibt genau die Reihe von $x^\nu J_{\nu-1}(x)$.
 Die zweite Formel folgt analog.
 \end{proof}
-
-Führt man die Produktregel aus und eliminiert einmal die Ableitung und
-einmal $J_\nu$, erhält man die beiden für die Praxis wichtigsten
-Beziehungen.
-
+ 
+Führt man die Produktregel aus und eliminiert einmal die Ableitung und einmal $J_\nu$, erhält man die beiden für die Praxis wichtigsten Beziehungen.
+ 
 \begin{korollar}
 \label{bessel:eigenschaften:korollar:rekursion}
 Es gilt
@@ -97,25 +87,23 @@ J_{\nu-1}(x) - J_{\nu+1}(x)
 \label{bessel:eigenschaften:eqn:ableitungrek}
 \end{align}
 \end{korollar}
-
-Die erste Formel ist eine Dreitermrekursion: kennt man $J_0$ und
-$J_1$, so lassen sich alle weiteren Ordnungen daraus berechnen.
-Aus~\eqref{bessel:eigenschaften:eqn:ableitungrek} folgt für $\nu=0$
-wegen $J_{-1}=-J_1$ der oft gebrauchte Spezialfall
+ 
+Die erste Formel ist eine Dreitermrekursion.
+Kennt man $J_0$ und $J_1$, so lassen sich alle weiteren Ordnungen daraus berechnen.
+Aus~\eqref{bessel:eigenschaften:eqn:ableitungrek} folgt für $\nu=0$ wegen $J_{-1}=-J_1$ der oft gebrauchte Spezialfall
 \begin{equation}
 J_0'(x) = -J_1(x),
 \label{bessel:eigenschaften:eqn:j0strich}
 \end{equation}
 das genaue Gegenstück zu $\cos' = -\sin$.
-
+ 
 %
 % Erzeugende Funktion und Integraldarstellung
 %
 \subsection{Erzeugende Funktion und Integraldarstellung
 \label{bessel:eigenschaften:subsection:erzeugend}}
-Für ganzzahlige Ordnungen gibt es eine überraschend kompakte
-Beschreibung aller $J_n$ auf einmal.
-
+Für ganzzahlige Ordnungen gibt es eine überraschend kompakte Beschreibung aller $J_n$ auf einmal.
+ 
 \begin{satz}
 \label{bessel:eigenschaften:satz:erzeugend}
 Für $t\ne 0$ gilt
@@ -127,18 +115,15 @@ J_n(x)\, t^n.
 \label{bessel:eigenschaften:eqn:erzeugend}
 \end{equation}
 \end{satz}
-
+ 
 \begin{proof}
-Man entwickelt die beiden Faktoren $e^{xt/2}$ und $e^{-x/(2t)}$
-je in ihre Exponentialreihe, multipliziert die Reihen aus und
-sammelt die Terme mit gleicher Potenz von $t$.
+Man entwickelt die beiden Faktoren $e^{xt/2}$ und $e^{-x/(2t)}$ je in ihre Exponentialreihe, multipliziert die Reihen aus und sammelt die Terme mit gleicher Potenz von $t$.
 Der Koeffizient von $t^n$ ist dann genau die Reihe
 \eqref{bessel:loesung:eqn:jnu}.
 \end{proof}
 % [TODO: das Cauchy-Produkt explizit ausschreiben, mindestens für n>=0]
-
-Setzt man $t=e^{i\tau}$, so wird $t-1/t = 2i\sin\tau$, und
-\eqref{bessel:eigenschaften:eqn:erzeugend} geht über in
+ 
+Setzt man $t=e^{i\tau}$, so wird $t-1/t = 2i\sin\tau$, und \eqref{bessel:eigenschaften:eqn:erzeugend} geht über in
 \begin{equation}
 e^{ix\sin\tau}
 =
@@ -148,10 +133,9 @@ J_n(x)\, e^{in\tau}.
 \end{equation}
 Das ist die \emph{Jacobi-Anger-Entwicklung}.
 \index{Jacobi-Anger-Entwicklung}%
-Die rechte Seite ist eine Fourier-Reihe in $\tau$, und die
-$J_n(x)$ sind ihre Fourier-Koeffizienten.
+Die rechte Seite ist eine Fourier-Reihe in $\tau$, und die $J_n(x)$ sind ihre Fourier-Koeffizienten.
 Die übliche Formel für Fourier-Koeffizienten liefert damit sofort
-
+ 
 \begin{korollar}
 \label{bessel:eigenschaften:korollar:integral}
 Für $n\in\mathbb{Z}$ gilt
@@ -168,22 +152,18 @@ e^{i(x\sin\tau - n\tau)}\,d\tau
 \label{bessel:eigenschaften:eqn:integral}
 \end{equation}
 \end{korollar}
-
+ 
 Diese Integraldarstellung ist historisch die ursprüngliche.
-Bessel hat die Funktionen in dieser Form eingeführt, und sie ist die
-Brücke zur Kepler-Gleichung in
-Abschnitt~\ref{bessel:section:kepler}.
-Der Ausdruck $n\tau - x\sin\tau$ im Integranden ist bereits die linke
-Seite der Kepler-Gleichung.
-
+Bessel hat die Funktionen in dieser Form eingeführt, und sie ist die Brücke zur Kepler-Gleichung in Abschnitt~\ref{bessel:section:kepler}.
+Der Ausdruck $n\tau - x\sin\tau$ im Integranden ist bereits die linke Seite der Kepler-Gleichung.
+ 
 %
 % Nullstellen
 %
 \subsection{Nullstellen
 \label{bessel:eigenschaften:subsection:nullstellen}}
-Die Bessel-Funktionen oszillieren, und ihre Nullstellen bestimmen in
-jeder Anwendung die möglichen Eigenfrequenzen oder Beugungsminima.
-
+Die Bessel-Funktionen oszillieren, und ihre Nullstellen bestimmen in jeder Anwendung die möglichen Eigenfrequenzen oder Beugungsminima.
+ 
 \begin{satz}
 \label{bessel:eigenschaften:satz:nullstellen}
 Für $\nu\ge 0$ hat $J_\nu$ unendlich viele positive Nullstellen
@@ -191,15 +171,13 @@ Für $\nu\ge 0$ hat $J_\nu$ unendlich viele positive Nullstellen
 0 < j_{\nu,1} < j_{\nu,2} < j_{\nu,3} < \dots,
 \]
 und es gilt $j_{\nu,m}\to\infty$.
-Zwischen je zwei aufeinanderfolgenden Nullstellen von $J_\nu$ liegt
-genau eine Nullstelle von $J_{\nu+1}$ und umgekehrt.
+Zwischen je zwei aufeinanderfolgenden Nullstellen von $J_\nu$ liegt genau eine Nullstelle von $J_{\nu+1}$ und umgekehrt.
 \end{satz}
 % [TODO: Beweis über die Sturmsche Vergleichstheorie oder über die
 %        Substitution u = sqrt(x) y, die auf u'' + (1 + (1/4-nu^2)/x^2)u = 0
 %        führt. Diese Substitution ist auch für die Asymptotik nützlich.]
-
-Die Nullstellen sind nicht in geschlossener Form angebbar, sie müssen
-numerisch bestimmt werden.
+ 
+Die Nullstellen sind nicht in geschlossener Form angebbar, sie müssen numerisch bestimmt werden.
 Die ersten Werte sind
 \begin{center}
 \begin{tabular}{c|ccc}
@@ -212,34 +190,28 @@ $2$ & $5.1356$ & $8.4172$ & $11.6198$
 \end{center}
 % [TODO: Tabelle als richtige Table-Umgebung mit Caption und Label,
 %        Quelle für die Werte angeben (Abramowitz-Stegun)]
-
-Anders als bei $\sin$ sind die Nullstellen nicht äquidistant, ihre
-Abstände nähern sich aber für grosse $x$ dem Wert $\pi$ an.
+ 
+Anders als bei $\sin$ sind die Nullstellen nicht äquidistant, ihre Abstände nähern sich aber für grosse $x$ dem Wert $\pi$ an.
 Das ist die Erklärung für den unharmonischen Klang einer Trommel.
-Die Eigenfrequenzen der kreisförmigen Membran vom Radius $a$ ergeben
-sich aus der Randbedingung $R(a)=0$, also aus $J_n(ka)=0$, zu
+Die Eigenfrequenzen der kreisförmigen Membran vom Radius $a$ ergeben sich aus der Randbedingung $R(a)=0$, also aus $J_n(ka)=0$, zu
 \begin{equation}
 \omega_{nm}
 =
 \frac{c}{a}\, j_{n,m}.
 \label{bessel:eigenschaften:eqn:eigenfrequenzen}
 \end{equation}
-Das Verhältnis der beiden tiefsten rotationssymmetrischen Moden ist
-$j_{0,2}/j_{0,1}\approx 2.295$ und damit kein rationales Vielfaches
-des Grundtons.
-Bei der Saite dagegen liegen die Nullstellen des Sinus äquidistant,
-und die Obertöne sind ganzzahlige Vielfache der Grundfrequenz.
+Das Verhältnis der beiden tiefsten rotationssymmetrischen Moden ist $j_{0,2}/j_{0,1}\approx 2.295$ und damit kein rationales Vielfaches des Grundtons.
+Bei der Saite dagegen liegen die Nullstellen des Sinus äquidistant, und die Obertöne sind ganzzahlige Vielfache der Grundfrequenz.
 % [TODO: Abbildung der ersten Membranmoden (0,1), (1,1), (2,1), (0,2)
 %        mit Knotenlinien]
-
+ 
 %
 % Orthogonalität
 %
 \subsection{Orthogonalität
 \label{bessel:eigenschaften:subsection:orthogonalitaet}}
-Wie die trigonometrischen Funktionen bilden auch die Bessel-Funktionen
-ein Orthogonalsystem, allerdings mit einer Gewichtsfunktion.
-
+Wie die trigonometrischen Funktionen bilden auch die Bessel-Funktionen ein Orthogonalsystem, allerdings mit einer Gewichtsfunktion.
+ 
 \begin{satz}
 \label{bessel:eigenschaften:satz:orthogonalitaet}
 Sind $j_{\nu,m}$ und $j_{\nu,l}$ Nullstellen von $J_\nu$, so gilt
@@ -259,15 +231,13 @@ s\,ds
 % [TODO: Beweis über die Lagrange-Identität / partielle Integration
 %        der Bessel-Gleichung in selbstadjungierter Form
 %        (x R')' + (k^2 x - nu^2/x) R = 0]
-
-Das Gewicht $s$ im Integral ist kein Schönheitsfehler, sondern das
-Flächenelement der Polarkoordinaten, $dA = r\,dr\,d\varphi$.
-Die Orthogonalität ist also die natürliche Orthogonalität auf der
-Kreisscheibe.
-
-Daraus ergibt sich die \emph{Fourier-Bessel-Reihe}:
+ 
+Das Gewicht $s$ im Integral ist kein Schönheitsfehler, sondern das Flächenelement der Polarkoordinaten, $dA = r\,dr\,d\varphi$.
+Die Orthogonalität ist also die natürliche Orthogonalität auf der Kreisscheibe.
+ 
+Daraus ergibt sich die \emph{Fourier-Bessel-Reihe}.
 \index{Fourier-Bessel-Reihe}%
-eine auf $[0,1]$ hinreichend gutartige Funktion $f$ lässt sich als
+Eine auf $[0,1]$ hinreichend gutartige Funktion $f$ lässt sich als
 \begin{equation}
 f(s)
 =
@@ -281,18 +251,15 @@ c_m
 \label{bessel:eigenschaften:eqn:fourierbessel}
 \end{equation}
 entwickeln.
-Damit lassen sich Anfangsbedingungen einer kreisförmigen Membran nach
-Eigenmoden zerlegen, genau wie eine Fourier-Reihe das für die Saite
-leistet.
-
+Damit lassen sich Anfangsbedingungen einer kreisförmigen Membran nach Eigenmoden zerlegen, genau wie eine Fourier-Reihe das für die Saite leistet.
+ 
 %
 % Asymptotisches Verhalten
 %
 \subsection{Asymptotisches Verhalten
 \label{bessel:eigenschaften:subsection:asymptotik}}
-Für grosse Argumente werden die Bessel-Funktionen fast zu
-trigonometrischen Funktionen.
-
+Für grosse Argumente werden die Bessel-Funktionen fast zu trigonometrischen Funktionen.
+ 
 \begin{satz}
 \label{bessel:eigenschaften:satz:asymptotik}
 Für $x\to\infty$ gilt
@@ -317,9 +284,8 @@ O(x^{-3/2}).
 % [TODO: Herleitung mindestens plausibel machen über die Substitution
 %        u(x) = sqrt(x) y(x), die auf u'' + (1 + (1/4-nu^2)/x^2) u = 0
 %        führt; für grosse x ist das die Schwingungsgleichung u'' + u = 0.]
-
-Die Substitution $u(x)=\sqrt{x}\,y(x)$ macht diese Aussage
-verständlich.
+ 
+Die Substitution $u(x)=\sqrt{x}\,y(x)$ macht diese Aussage verständlich.
 Sie überführt die Bessel-Gleichung in
 \[
 u''
@@ -330,19 +296,13 @@ u''
 =
 0,
 \]
-und für grosse $x$ ist das bis auf einen verschwindenden Term die
-gewöhnliche Schwingungsgleichung $u''+u=0$.
-Die Lösung ist also asymptotisch eine Schwingung, und der Faktor
-$1/\sqrt{x}$ kommt von der Rücksubstitution.
-
+und für grosse $x$ ist das bis auf einen verschwindenden Term die gewöhnliche Schwingungsgleichung $u''+u=0$.
+Die Lösung ist also asymptotisch eine Schwingung, und der Faktor $1/\sqrt{x}$ kommt von der Rücksubstitution.
+ 
 Die Abklingrate $1/\sqrt{x}$ ist physikalisch einleuchtend.
-Eine von einem Punkt ausgehende Kreiswelle verteilt ihre Energie auf
-einen Kreis mit Umfang $2\pi r$, die Energiedichte fällt also wie
-$1/r$ und die Amplitude wie $1/\sqrt{r}$.
+Eine von einem Punkt ausgehende Kreiswelle verteilt ihre Energie auf einen Kreis mit Umfang $2\pi r$, die Energiedichte fällt also wie $1/r$ und die Amplitude wie $1/\sqrt{r}$.
 Wirft man einen Stein ins Wasser, sieht man genau das.
-
-Zusammen mit~\eqref{bessel:loesung:eqn:kleinx} ist das Verhalten von
-$J_\nu$ damit in beiden Grenzfällen bekannt: nahe null wie eine
-Potenz $x^\nu$, weit draussen wie eine gedämpfte Kosinusschwingung.
-Der Bereich dazwischen ist der interessante, und dort hilft nur die
-Reihe oder die Numerik.
+ 
+Zusammen mit~\eqref{bessel:loesung:eqn:kleinx} ist das Verhalten von $J_\nu$ damit in beiden Grenzfällen bekannt.
+Nahe null verhält es sich wie eine Potenz $x^\nu$, weit draussen wie eine gedämpfte Kosinusschwingung.
+Der Bereich dazwischen ist der interessante, und dort hilft nur die Reihe oder die Numerik.

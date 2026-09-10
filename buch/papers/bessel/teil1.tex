@@ -11,25 +11,22 @@
 \label{bessel:section:herleitung}}
 \kopfrechts{Herleitung}
 %
-% Ziel: zeigen, dass die Bessel-DGL nicht vom Himmel fällt, sondern
+% Ziel dieses Abschnitts.
+% Zeigen, dass die Bessel-DGL nicht vom Himmel fällt, sondern
 % zwangsläufig entsteht, sobald man ein Wellenproblem auf einem
 % Kreisgebiet separiert.
-% Roter Faden: Rechteck -> Kreis. Am Rechteck geht alles mit sin/cos
+% Roter Faden, Rechteck -> Kreis. Am Rechteck geht alles mit sin/cos
 % auf, am Kreis nicht mehr.
 %
 Die Bessel-Differentialgleichung fällt nicht vom Himmel.
-Sie entsteht zwangsläufig, sobald man ein Schwingungsproblem auf einem
-kreisförmigen Gebiet in Koordinaten zerlegt, die zur Geometrie passen.
-Dieser Abschnitt führt die Rechnung von der Wellengleichung bis zur
-fertigen Differentialgleichung durch.
-
+Sie entsteht zwangsläufig, sobald man ein Schwingungsproblem auf einem kreisförmigen Gebiet in Koordinaten zerlegt, die zur Geometrie passen.
+Dieser Abschnitt führt die Rechnung von der Wellengleichung bis zur fertigen Differentialgleichung durch.
 %
 % Die schwingende Membran
 %
 \subsection{Die schwingende Membran
 \label{bessel:herleitung:subsection:membran}}
-Eine eingespannte Membran wird durch ihre Auslenkung $u(x,y,t)$
-senkrecht zur Ruhelage beschrieben.
+Eine eingespannte Membran wird durch ihre Auslenkung $u(x,y,t)$ senkrecht zur Ruhelage beschrieben.
 Für kleine Auslenkungen genügt $u$ der Wellengleichung
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2}
@@ -46,9 +43,8 @@ c^2 \Delta u,
 wobei $c$ die Ausbreitungsgeschwindigkeit ist.
 % [TODO: Herleitung von (Kraftbilanz am Flächenelement) entweder kurz
 %        ausführen oder auf eine Physikquelle verweisen]
-Am Rand der Membran ist die Auslenkung null, es gilt also
-$u=0$ auf dem Rand des Gebietes.
-
+Am Rand der Membran ist die Auslenkung null, es gilt also $u=0$ auf dem Rand des Gebietes.
+ 
 Für die Zeitabhängigkeit macht man den Separationsansatz
 \begin{equation}
 u(x,y,t)
@@ -65,33 +61,26 @@ $c^2Tv$ ergibt
 \]
 Die linke Seite hängt nur von $t$ ab, die rechte nur von $x$ und $y$.
 Beide Seiten müssen daher konstant sein.
-Nennt man diese Konstante $-k^2$, so zerfällt das Problem in die
-harmonische Schwingungsgleichung $T''=-c^2k^2T$ und in die
+Nennt man diese Konstante $-k^2$, so zerfällt das Problem in die harmonische Schwingungsgleichung $T''=-c^2k^2T$ und in die
 \emph{Helmholtz-Gleichung}
 \index{Helmholtz-Gleichung}%
 \begin{equation}
 \Delta v + k^2 v = 0.
 \label{bessel:herleitung:eqn:helmholtz}
 \end{equation}
-Die zeitliche Abhängigkeit ist damit erledigt, sie ist immer
-sinusförmig mit der Kreisfrequenz $\omega = ck$.
+Die zeitliche Abhängigkeit ist damit erledigt, sie ist immer sinusförmig mit der Kreisfrequenz $\omega = ck$.
 Die ganze Information über die Form der Membran steckt in
 \eqref{bessel:herleitung:eqn:helmholtz}.
-
 %
 % Rechteck und Kreis
 %
 \subsection{Rechteck und Kreis
 \label{bessel:herleitung:subsection:rechteckkreis}}
-An dieser Stelle lohnt sich ein Vergleich, der zeigt, wo die
-Schwierigkeit liegt.
-
-Für eine rechteckige Membran mit den Seitenlängen $a$ und $b$ führt der
-Ansatz $v(x,y)=X(x)Y(y)$ auf die beiden Gleichungen
+An dieser Stelle lohnt sich ein Vergleich, der zeigt, wo die Schwierigkeit liegt.
+ 
+Für eine rechteckige Membran mit den Seitenlängen $a$ und $b$ führt der Ansatz $v(x,y)=X(x)Y(y)$ auf die beiden Gleichungen
 $X''=-\alpha^2X$ und $Y''=-\beta^2Y$ mit $\alpha^2+\beta^2=k^2$.
-Beide sind Schwingungsgleichungen mit konstanten Koeffizienten, ihre
-Lösungen sind Sinus- und Kosinusfunktionen, und die Randbedingungen
-liefern
+Beide sind Schwingungsgleichungen mit konstanten Koeffizienten, ihre Lösungen sind Sinus- und Kosinusfunktionen, und die Randbedingungen liefern
 \[
 v_{mn}(x,y)
 =
@@ -100,25 +89,19 @@ v_{mn}(x,y)
 \qquad
 m,n \in \mathbb{N}.
 \]
-Das Problem ist mit den Funktionen der elementaren Analysis
-vollständig gelöst.
-
+Das Problem ist mit den Funktionen der elementaren Analysis vollständig gelöst.
+ 
 Bei einer kreisförmigen Membran versagt dieser Ansatz.
-Der Rand ist ein Kreis, und in kartesischen Koordinaten lässt sich die
-Randbedingung nicht in eine Bedingung an $X$ und eine an $Y$ zerlegen.
-Man muss Koordinaten wählen, in denen der Rand eine
-Koordinatenfläche ist, und das sind die Polarkoordinaten.
-Der Preis dafür ist, dass der Laplace-Operator in diesen Koordinaten
-nicht mehr konstante Koeffizienten hat.
+Der Rand ist ein Kreis, und in kartesischen Koordinaten lässt sich die Randbedingung nicht in eine Bedingung an $X$ und eine an $Y$ zerlegen.
+Man muss Koordinaten wählen, in denen der Rand eine Koordinatenfläche ist, und das sind die Polarkoordinaten.
+Der Preis dafür ist, dass der Laplace-Operator in diesen Koordinaten nicht mehr konstante Koeffizienten hat.
 Genau daraus entsteht die Bessel-Gleichung.
-
 %
 % Separation in Polarkoordinaten
 %
 \subsection{Separation in Polarkoordinaten
 \label{bessel:herleitung:subsection:polar}}
-In Polarkoordinaten $x=r\cos\varphi$, $y=r\sin\varphi$ lautet der
-Laplace-Operator
+In Polarkoordinaten $x=r\cos\varphi$, $y=r\sin\varphi$ lautet der Laplace-Operator
 \begin{equation}
 \Delta
 =
@@ -131,8 +114,7 @@ Laplace-Operator
 \end{equation}
 % [TODO: Umrechnung des Laplace-Operators entweder in einer Fussnote
 %        andeuten oder als Übungsaufgabe auslagern]
-Die Helmholtz-Gleichung~\eqref{bessel:herleitung:eqn:helmholtz} wird
-damit zu
+Die Helmholtz-Gleichung~\eqref{bessel:herleitung:eqn:helmholtz} wird damit zu
 \begin{equation}
 \frac{\partial^2 v}{\partial r^2}
 +
@@ -149,7 +131,7 @@ Die Koeffizienten $1/r$ und $1/r^2$ sind der entscheidende Unterschied
 zum kartesischen Fall.
 Sie sind bei $r=0$ singulär, und diese Singularität wird uns im
 nächsten Abschnitt wieder begegnen.
-
+ 
 Nun separiert man ein zweites Mal, diesmal in Radius und Winkel,
 \begin{equation}
 v(r,\varphi)
@@ -167,7 +149,7 @@ Multiplikation mit $r^2/(R\Phi)$ ergibt
 Wieder hängt die linke Seite nur von $r$ ab und die rechte nur von
 $\varphi$, beide sind also konstant.
 Wir nennen die Konstante $n^2$.
-
+ 
 Für den Winkelanteil bleibt
 \begin{equation}
 \Phi''(\varphi) + n^2\Phi(\varphi) = 0
@@ -175,13 +157,13 @@ Für den Winkelanteil bleibt
 \end{equation}
 mit den Lösungen $\Phi(\varphi)=\cos n\varphi$ und
 $\Phi(\varphi)=\sin n\varphi$.
-Hier kommt eine Bedingung ins Spiel, die es beim Rechteck nicht gibt:
-die Winkelkoordinate ist periodisch, es muss
+Hier kommt eine Bedingung ins Spiel, die es beim Rechteck nicht gibt.
+Die Winkelkoordinate ist periodisch, es muss
 $\Phi(\varphi+2\pi)=\Phi(\varphi)$ gelten.
 Daraus folgt $n\in\mathbb{Z}$.
 Die Separationskonstante ist also nicht frei wählbar, sondern durch die
 Geometrie auf ganze Zahlen festgelegt.
-
+ 
 %
 % Die Bessel-Differentialgleichung
 %
@@ -202,12 +184,11 @@ x^2y''(x) + xy'(x) + (x^2-n^2)y(x) = 0.
 Das ist die \emph{Bessel-Differentialgleichung}
 \index{Bessel-Differentialgleichung}%
 der Ordnung $n$.
-
+ 
 Aus der Herleitung ergibt sich $n$ als ganze Zahl.
-Die Gleichung~\eqref{bessel:herleitung:eqn:bessel} ist aber für jeden
-reellen oder komplexen Parameter sinnvoll, und die Lösungstheorie des
-nächsten Abschnitts braucht die Ganzzahligkeit an keiner Stelle.
+Die Gleichung~\eqref{bessel:herleitung:eqn:bessel} ist aber für jeden reellen oder komplexen Parameter sinnvoll, und die Lösungstheorie des nächsten Abschnitts braucht die Ganzzahligkeit an keiner Stelle.
 Wir schreiben deshalb ab jetzt
+
 \begin{equation}
 x^2y'' + xy' + (x^2-\nu^2)y = 0,
 \qquad
@@ -217,12 +198,9 @@ x^2y'' + xy' + (x^2-\nu^2)y = 0,
 und nennen $\nu$ die \emph{Ordnung}
 \index{Ordnung einer Bessel-Funktion}%
 der Gleichung.
-Halbzahlige Ordnungen treten zum Beispiel bei kugelsymmetrischen
-Problemen auf, wo dieselbe Rechnung in Kugelkoordinaten durchgeführt
-wird.
-
-Ein Blick auf~\eqref{bessel:herleitung:eqn:besselnu} zeigt schon, wo
-die Schwierigkeit liegt.
+Halbzahlige Ordnungen treten zum Beispiel bei kugelsymmetrischen Problemen auf, wo dieselbe Rechnung in Kugelkoordinaten durchgeführt wird.
+ 
+Ein Blick auf~\eqref{bessel:herleitung:eqn:besselnu} zeigt schon, wo die Schwierigkeit liegt.
 Dividiert man durch $x^2$, so lautet die Gleichung
 \[
 y''
@@ -234,14 +212,10 @@ y''
 0,
 \]
 und die Koeffizienten haben bei $x=0$ einen Pol.
-Ein gewöhnlicher Potenzreihenansatz um $x=0$, wie er in
-Abschnitt~\ref{buch:analytisch:section:potenzreihen} verwendet wurde,
-kann daher nicht funktionieren.
+Ein gewöhnlicher Potenzreihenansatz um $x=0$, wie er in Abschnitt~\ref{buch:analytisch:section:potenzreihen} verwendet wurde, kann daher nicht funktionieren.
 Die Gleichung ist aber von genau der Bauart
 \[
 x^2y'' + p(x)\,xy' + q(x)\,y = 0
 \]
-mit den bei $0$ analytischen Funktionen $p(x)=1$ und
-$q(x)=x^2-\nu^2$, sie ist also eine fuchssche Differentialgleichung im
-Sinne von Abschnitt~\ref{buch:differentialgleichungen:section:fuchs}.
+mit den bei $0$ analytischen Funktionen $p(x)=1$ und $q(x)=x^2-\nu^2$, sie ist also eine fuchssche Differentialgleichung im Sinne von Abschnitt~\ref{buch:differentialgleichungen:section:fuchs}.
 Damit steht das Werkzeug für ihre Lösung bereits zur Verfügung.
