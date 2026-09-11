@@ -67,7 +67,14 @@ Gliedweises Differenzieren ist innerhalb des Konvergenzbereiches erlaubt und erg
 \frac{(-1)^k (2k+2\nu)}{k!\,\Gamma(\nu+k+1)}
 \frac{x^{2k+2\nu-1}}{2^{2k+\nu}}.
 \]
-Mit $\Gamma(\nu+k+1)=(\nu+k)\Gamma(\nu+k)$ kürzt sich der Faktor $2(k+\nu)$ weg, und es bleibt genau die Reihe von $x^\nu J_{\nu-1}(x)$.
+Wegen $1/\Gamma(z)=z/\Gamma(z+1)$, das ist die Funktionalgleichung~\eqref{bessel:loesung:eqn:gammafunktional} für die ganze Funktion $1/\Gamma$, gilt
+\[
+\frac{2k+2\nu}{\Gamma(\nu+k+1)}
+=
+\frac{2}{\Gamma(\nu+k)}
+\]
+auch dann, wenn $\nu+k$ eine nichtpositive ganze Zahl ist.
+Damit bleibt genau die Reihe von $x^\nu J_{\nu-1}(x)$.
 Die zweite Formel folgt analog.
 \end{proof}
  
@@ -254,12 +261,18 @@ Ist dagegen $u'\ge 0$ auf ganz $[X',\infty)$, so ist $u(x)\ge u(X')>0$ und damit
 Dann fällt $u'$ unbeschränkt und wird negativ, was auf den ersten Fall zurückführt.
 Beide Fälle widersprechen der Annahme, $J_\nu$ hat also unendlich viele positive Nullstellen.
 Da $J_\nu$ nicht identisch verschwindet, sind ihre Nullstellen isoliert und können sich nicht häufen, folglich gilt $j_{\nu,m}\to\infty$.
+Nach~\eqref{bessel:loesung:eqn:kleinx} hat $J_\nu$ nahe $0$ keine Nullstelle, es gibt also eine kleinste positive Nullstelle $j_{\nu,1}$.
 
 Die Verschachtelung folgt aus dem Satz von Rolle.
 Sind $j_{\nu,m}$ und $j_{\nu,m+1}$ zwei aufeinanderfolgende Nullstellen von $J_\nu$, so verschwindet $x^{-\nu}J_\nu(x)$ an beiden Enden des Intervalls.
 Nach~\eqref{bessel:eigenschaften:eqn:ableitung2} ist die Ableitung dieser Funktion gleich $-x^{-\nu}J_{\nu+1}(x)$, und sie muss nach Rolle dazwischen verschwinden.
 Also liegt dort eine Nullstelle von $J_{\nu+1}$.
-Umgekehrt verschwindet zwischen zwei aufeinanderfolgenden Nullstellen von $J_{\nu+1}$ die Funktion $x^{\nu+1}J_{\nu+1}(x)$ an beiden Enden, und ihre Ableitung ist nach~\eqref{bessel:eigenschaften:eqn:ableitung1}, angewandt mit $\nu+1$ anstelle von $\nu$, gleich $x^{\nu+1}J_\nu(x)$.
+Umgekehrt verschwindet $x^{\nu+1}J_{\nu+1}(x)$ an zwei aufeinanderfolgenden Nullstellen von $J_{\nu+1}$.
+Ihre Ableitung ist nach~\eqref{bessel:eigenschaften:eqn:ableitung1}, angewandt mit $\nu+1$ anstelle von $\nu$, gleich $x^{\nu+1}J_\nu(x)$, dazwischen liegt also eine Nullstelle von $J_\nu$.
+Eine gemeinsame Nullstelle $a>0$ von $J_\nu$ und $J_{\nu+1}$ ist ausgeschlossen, denn aus~\eqref{bessel:eigenschaften:eqn:ableitung2} folgt dann $J_\nu'(a)=0$, und eine Lösung von~\eqref{bessel:loesung:eqn:bessel} mit $y(a)=y'(a)=0$ verschwindet identisch.
+Lägen zwei Nullstellen von $J_{\nu+1}$ zwischen $j_{\nu,m}$ und $j_{\nu,m+1}$, so läge zwischen ihnen eine Nullstelle von $J_\nu$, im Widerspruch dazu, dass $j_{\nu,m}$ und $j_{\nu,m+1}$ aufeinanderfolgen.
+Zwischen zwei aufeinanderfolgenden Nullstellen von $J_\nu$ liegt also genau eine Nullstelle von $J_{\nu+1}$, und ebenso umgekehrt.
+
 \end{proof}
  
 Die Nullstellen sind nicht in geschlossener Form angebbar, sie müssen numerisch bestimmt werden.
@@ -289,7 +302,7 @@ Die Eigenfrequenzen der kreisförmigen Membran vom Radius $a$ ergeben sich aus d
 \frac{c}{a}\, j_{n,m}.
 \label{bessel:eigenschaften:eqn:eigenfrequenzen}
 \end{equation}
-Das Verhältnis der beiden tiefsten rotationssymmetrischen Moden ist $j_{0,2}/j_{0,1}\approx 2.295$ und damit kein rationales Vielfaches des Grundtons.
+Das Verhältnis der beiden tiefsten rotationssymmetrischen Moden ist $j_{0,2}/j_{0,1}\approx 2.295$ und damit kein ganzzahliges Vielfaches des Grundtons.
 Bei der Saite dagegen liegen die Nullstellen des Sinus äquidistant, und die Obertöne sind ganzzahlige Vielfache der Grundfrequenz.
 Abbildung~\ref{bessel:eigenschaften:fig:moden} zeigt die vier tiefsten Moden mit ihren Knotenlinien.
 
@@ -394,7 +407,9 @@ Integration über $[0,1]$ liefert deshalb
 =
 0 .
 \]
-Am unteren Rand verschwindet die Klammer, weil $u$ und $v$ nach~\eqref{bessel:loesung:eqn:kleinx} bei $s=0$ wie $s^{\nu}$ verschwinden und der ganze Ausdruck daher von der Ordnung $s^{2\nu}$ ist.
+Am unteren Rand verschwindet die Klammer.
+Für $\nu>0$ verschwinden $u$ und $v$ nach~\eqref{bessel:loesung:eqn:kleinx} bei $s=0$ wie $s^{\nu}$ und ihre Ableitungen wie $s^{\nu-1}$, der ganze Ausdruck ist daher von der Ordnung $s^{2\nu}$.
+Für $\nu=0$ sind $u$ und $v$ bei $s=0$ beschränkt, und nach~\eqref{bessel:eigenschaften:eqn:j0strich} verschwinden $u'$ und $v'$ dort wie $s$, der Ausdruck ist daher von der Ordnung $s^2$.
 Am oberen Rand verschwindet sie, weil $\alpha$ und $\beta$ Nullstellen von $J_\nu$ sind und damit $u(1)=v(1)=0$ gilt.
 Für $m\ne l$ ist $\alpha^2\ne\beta^2$, und es folgt die behauptete Orthogonalität.
 
@@ -413,7 +428,7 @@ Integration über $[0,1]$ und partielle Integration des zweiten Terms ergeben
 =
 \Bigl[\,(s\,u')^2 + (\alpha^2s^2-\nu^2)u^2\,\Bigr]_0^1 .
 \]
-Am unteren Rand verschwinden beide Summanden wieder mit der Ordnung $s^{2\nu}$, am oberen Rand fällt wegen $u(1)=0$ der zweite Summand weg.
+Am unteren Rand verschwinden beide Summanden wieder, für $\nu>0$ mit der Ordnung $s^{2\nu}$ und für $\nu=0$ mit der Ordnung $s^2$.
 Mit $u'(1)=\alpha J_\nu'(\alpha)$ bleibt
 \[
 \int_0^1 s\,J_\nu(\alpha s)^2\,ds
@@ -501,7 +516,8 @@ Damit sind sowohl die Amplitude $\sqrt{2/\pi}$ als auch der Phasenanteil $-\pi/4
 
 Der verbleibende Phasenanteil $-\nu\pi/2$ lässt sich ebenfalls kontrollieren.
 Leitet man die Asymptotik von $x^{-\nu}J_\nu$ ab und vergleicht mit~\eqref{bessel:eigenschaften:eqn:ableitung2}, so verschiebt jeder Schritt von $\nu$ auf $\nu+1$ die Phase um genau $\pi/2$.
-Ein vollständiger Beweis für beliebiges $\nu$ verlangt eine echte asymptotische Analyse, etwa die Methode der stationären Phase angewandt auf die Integraldarstellung~\eqref{bessel:eigenschaften:eqn:integral}.
+Ein vollständiger Beweis für beliebiges $\nu$ verlangt eine echte asymptotische Analyse.
+Für ganzzahliges $\nu=n$ leistet das die Methode der stationären Phase, angewandt auf die Integraldarstellung~\eqref{bessel:eigenschaften:eqn:integral}, für allgemeines $\nu$ braucht man eine Integraldarstellung, die auch für nicht ganzzahlige Ordnung gilt.
 Die Einzelheiten finden sich bei \cite{bessel:watson} und \cite{bessel:dlmf}.
 
 Die Lösung ist also asymptotisch eine Schwingung, und der Faktor $1/\sqrt{x}$ kommt von der Rücksubstitution.

@@ -103,7 +103,7 @@ gegenüber $\nu^2$ vernachlässigbar, und die Gleichung geht in
 x^2y'' + xy' - \nu^2 y = 0
 \]
 über.
-Das ist eine eulersche Differentialgleichung, deren Lösungen genau $x^{\nu}$ und $x^{-\nu}$ sind.
+Das ist eine eulersche Differentialgleichung, deren Lösungen für $\nu>0$ genau $x^{\nu}$ und $x^{-\nu}$ sind.
 Die Indexgleichung beschreibt also das Verhalten der Lösung in unmittelbarer Nähe der Singularität.
  
 %
@@ -203,8 +203,10 @@ Partielle Integration liefert die Funktionalgleichung
 \end{equation}
 und wegen $\Gamma(1)=1$ folgt daraus $\Gamma(n+1)=n!$ für $n\in\mathbb{N}$.
 Die Gammafunktion ist also eine Fortsetzung der Fakultät auf komplexe Argumente.
-Mit~\eqref{bessel:loesung:eqn:gammafunktional} in der Form $\Gamma(z)=\Gamma(z+1)/z$ lässt sie sich im Sinne von Abschnitt~\ref{buch:analytisch:section:fortsetzung} auf ganz $\mathbb{C}$ ausser den Punkten $0,-1,-2,\dots$ analytisch fortsetzen.
-Dort hat sie einfache Pole, ihr Kehrwert $1/\Gamma$ ist deshalb eine ganze Funktion und verschwindet an genau diesen Stellen.
+Mit~\eqref{bessel:loesung:eqn:gammafunktional} in der Form $\Gamma(z)=\Gamma(z+1)/z$ lässt sie sich im Sinne von Abschnitt~\ref{buch:analytisch:section:fortsetzung} analytisch fortsetzen.
+Man erhält so eine auf ganz $\mathbb{C}$ ausser den Punkten $0,-1,-2,\dots$ definierte Funktion.
+Dort hat sie einfache Pole, und Nullstellen hat sie nirgends.
+Ihr Kehrwert $1/\Gamma$ ist deshalb eine ganze Funktion, die genau an diesen Stellen verschwindet.
 Schliesslich ist $\Gamma(\frac12)=\sqrt{\pi}$.
 Mehr wird im Folgenden nicht gebraucht, für eine ausführliche Darstellung sei auf \cite{bessel:abramowitz} verwiesen.
 
@@ -321,6 +323,9 @@ J_{-\nu}(x)
 \label{bessel:loesung:eqn:jminusnu}
 \end{equation}
 
+Für halbzahliges $\nu$ verschwindet dabei der Faktor $(n-\nu)^2-\nu^2=n(n-2\nu)$ bei $n=2\nu$, der Koeffizient $a_{2\nu}$ bleibt also unbestimmt.
+Man setzt ihn null, denn jeder andere Wert fügt nur ein Vielfaches von $J_\nu$ hinzu.
+
 Für $\nu\notin\mathbb{Z}$ ist damit alles erledigt.
 Bei $x=0$ verhält sich $J_\nu$ wie $x^{\nu}$ und $J_{-\nu}$ wie $x^{-\nu}$, die eine Funktion bleibt also beschränkt und die andere nicht.
 Proportional können sie deshalb nicht sein, und
@@ -355,7 +360,8 @@ J_{-n}(x)
 \end{align*}
 die zweite Wurzel der Indexgleichung liefert also nichts Neues.
 Das ist kein Zufall, sondern der im Fuchs-Abschnitt beschriebene Ausnahmefall.
-Die beiden Wurzeln $\varrho_1=n$ und $\varrho_2=-n$ unterscheiden sich um die ganze Zahl $2n$, und dann kann die Rekursion für den kleineren Exponenten zusammenbrechen.
+Für $n\ge 1$ unterscheiden sich die beiden Wurzeln $\varrho_1=n$ und $\varrho_2=-n$ um die ganze Zahl $2n$, und dann kann die Rekursion für den kleineren Exponenten zusammenbrechen.
+Für $n=0$ fallen die beiden Wurzeln zusammen, und der Ansatz liefert von vornherein nur eine Lösung.
 
 Eine zweite, von $J_n$ unabhängige Lösung existiert trotzdem.
 Sie enthält einen logarithmischen Term und lässt sich deshalb durch keine verallgemeinerte Potenzreihe~\eqref{bessel:loesung:eqn:ansatz} darstellen.
