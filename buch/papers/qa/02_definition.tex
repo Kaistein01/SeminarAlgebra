@@ -26,7 +26,7 @@ mit $i$ multipliziert, sodass $iix = i^2x$, dann greift die oben
 genannte Regel und $-x$ entsteht. Die Zahl wurde somit um weitere 
 90° im Gegenuhrzeigersinn gedreht. Die selbe Regel gilt auch 
 allgemein: Selbst wenn $x$ keine reelle positive Zahl, sondern eine 
-komplexe Zahl ist, geschieht die Drehung auf gleicher Weise. 
+komplexe Zahl ist, geschieht die Drehung auf gleiche Weise. 
 
 Für eine ganze 360° Drehung muss $x$ vier mal mit $i$ multipliziert 
 werden. Potenzen mit Basis $i$ wiederholen sich also nach vier 
@@ -73,7 +73,7 @@ zyklische Verschiebungen, wie in
     i\!jk = ki\!j = jki = -1
 \end{equation*}
 beschrieben. Damit entstehen weitere Eigenschaften: Da $i\!jk = kk = 
--1$, muss $ij = k$ entsprechen. Dasselbe gilt auch für $ki = j$ und 
+-1$, muss $i\!j = k$ entsprechen. Dasselbe gilt auch für $ki = j$ und 
 $jk = i$. Die Reihenfolge einer Multiplikation spielt dabei eine 
 grosse Rolle, denn $ik \neq ki$. Dies kann mit dem folgenden
 Experiment
@@ -107,7 +107,7 @@ aufgeteilt, woraus
 \begin{align*}
     (a + ib + jc + kd) \cdot (e + if + jg + kh) 
     &= \qquad ae + aif + ajg + akh \\
-    &\qquad+ ibe + i^2bf + ijbg + ikbh \\
+    &\qquad+ ibe + i^2bf + i\!jbg + ikbh \\
     &\qquad+ jce + jif + j^2cg + jkch \\
     &\qquad+ kde + kif + kjcg + k^2dh \\
     &= \qquad (ae - bf - cg - dh) \\
@@ -120,27 +120,27 @@ folgt.
 \subsection{Warum vier Dimensionen?}
 Angenommen, es gäbe eine dreidimensionale Zahlenmenge mit Basis $1, i, j$ und
 $i^2 = j^2 = -1$, in der uneingeschränkt dividiert werden kann. Dann
-müsste insbesondere das Produkt $ij$ wieder in dieser Menge liegen,
+müsste insbesondere das Produkt $i\!j$ wieder in dieser Menge liegen,
 sich also als Linearkombination
 \begin{equation*}
-    ij = a + bi + cj, \qquad a,b,c \in \mathbb{R}
+    i\!j = a + bi + cj, \qquad a,b,c \in \mathbb{R}
 \end{equation*}
 schreiben lassen. Multipliziert man diese Gleichung von links mit $i$,
-so ergibt die Gleichung $i(ij) = i^2 j = -j$, die Linearkombination
+so ergibt die Gleichung $i(i\!j) = i^2 j = -j$, die Linearkombination
 dagegen
 \begin{align*}
-    i(a + bi + cj) &= ai + bi^2 + c(ij) \\
+    i(a + bi + cj) &= ai + bi^2 + c(i\!j) \\
                    &= -b + ai + c(a + bi + cj) \\
-                   &= (ca - b) + (a + cb)i + c^2 j .
+                   &= (ca - b) + (a + cb)i + c^2\!j .
 \end{align*}
 Ein Koeffizientenvergleich beim Term $j$ liefert $c^2 = -1$, was für
-eine reelle Zahl $c$ unmöglich ist. Das Produkt $ij$ lässt sich also
+eine reelle Zahl $c$ unmöglich ist. Das Produkt $i\!j$ lässt sich also
 nicht im dreidimensionalen Raum unterbringen.
 
 Hamiltons Ausweg bestand darin, dieses Produkt nicht mehr erklären zu
 wollen, sondern es als neue, vierte Basisgrösse zu akzeptieren:
-$k := ij$. Die Erweiterung ist damit zwangsläufig vierdimensional. Der
-Preis dafür ist die Kommutativität, denn aus $k = ij$ folgt $ji = -k$,
+$k := i\!j$. Die Erweiterung ist damit zwangsläufig vierdimensional. Der
+Preis dafür ist die Kommutativität, denn aus $k = i\!j$ folgt $ji = -k$,
 wie oben bereits gezeigt wurde.
 
 \subsection{Konjugation, Norm und Inverse}
