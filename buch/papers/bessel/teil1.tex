@@ -41,10 +41,29 @@ c^2 \Delta u,
 \label{bessel:herleitung:eqn:welle}
 \end{equation}
 wobei $c$ die Ausbreitungsgeschwindigkeit ist.
-% [TODO: Herleitung von (Kraftbilanz am Flächenelement) entweder kurz
-%        ausführen oder auf eine Physikquelle verweisen]
+Die Wellengleichung~\eqref{bessel:herleitung:eqn:welle} ergibt sich aus einer Kraftbilanz am Flächenelement.
+Die Membran habe die Flächendichte $\mu$ und stehe unter der homogenen Spannung $\sigma$, gemessen als Kraft pro Länge.
+An jeder Kante eines Rechtecks mit den Kantenlängen $dx$ und $dy$ zieht die Spannung tangential an der Membran.
+Für kleine Auslenkungen ist die vertikale Komponente dieser Kraft proportional zur Steigung, für die beiden Kanten senkrecht zur $x$-Achse also
+\[
+\sigma\,dy
+\bigl(
+u_x(x+dx,y) - u_x(x,y)
+\bigr)
+\approx
+\sigma\, u_{xx}\, dx\, dy .
+\]
+Der Beitrag der beiden anderen Kanten ist $\sigma u_{yy}\,dx\,dy$.
+Das zweite Newtonsche Gesetz liefert damit
+\[
+\mu\, dx\, dy\; u_{tt}
+=
+\sigma \bigl( u_{xx} + u_{yy} \bigr) dx\, dy ,
+\]
+und Division durch $\mu\,dx\,dy$ ergibt \eqref{bessel:herleitung:eqn:welle} mit $c^2 = \sigma/\mu$.
+Vorausgesetzt sind dabei kleine Auslenkungen, eine über die ganze Membran konstante Spannung und eine verschwindende Biegesteifigkeit.
+Eine ausführliche Herleitung findet sich bei \cite{bessel:courant}.
 Am Rand der Membran ist die Auslenkung null, es gilt also $u=0$ auf dem Rand des Gebietes.
- 
 Für die Zeitabhängigkeit macht man den Separationsansatz
 \begin{equation}
 u(x,y,t)
@@ -112,8 +131,36 @@ In Polarkoordinaten $x=r\cos\varphi$, $y=r\sin\varphi$ lautet der Laplace-Operat
 \frac{1}{r^2}\frac{\partial^2}{\partial\varphi^2}.
 \label{bessel:herleitung:eqn:laplacepolar}
 \end{equation}
-% [TODO: Umrechnung des Laplace-Operators entweder in einer Fussnote
-%        andeuten oder als Übungsaufgabe auslagern]
+Diese Form erhält man mit der Kettenregel aus $r=\sqrt{x^2+y^2}$ und $\varphi=\arctan(y/x)$.
+Wegen
+\[
+\frac{\partial r}{\partial x} = \cos\varphi,
+\qquad
+\frac{\partial r}{\partial y} = \sin\varphi,
+\qquad
+\frac{\partial\varphi}{\partial x} = -\frac{\sin\varphi}{r},
+\qquad
+\frac{\partial\varphi}{\partial y} = \frac{\cos\varphi}{r}
+\]
+lauten die Ableitungsoperatoren
+\[
+\frac{\partial}{\partial x}
+=
+\cos\varphi\,\frac{\partial}{\partial r}
+-
+\frac{\sin\varphi}{r}\,\frac{\partial}{\partial\varphi},
+\qquad
+\frac{\partial}{\partial y}
+=
+\sin\varphi\,\frac{\partial}{\partial r}
++
+\frac{\cos\varphi}{r}\,\frac{\partial}{\partial\varphi}.
+\]
+Wendet man beide ein zweites Mal an und addiert, so heben sich die gemischten Ableitungen 
+$\partial^2/\partial r\,\partial\varphi$ und die Terme mit $\partial/\partial\varphi$ paarweise weg, 
+und mit $\cos^2\varphi+\sin^2\varphi=1$ bleibt\eqref{bessel:herleitung:eqn:laplacepolar} übrig.
+Zu beachten ist dabei, dass die Koeffizienten $\cos\varphi$ und $\sin\varphi/r$ selbst von $r$ und $\varphi$ abhängen und deshalb mitdifferenziert werden müssen.
+Genau daraus entsteht der Term $\frac{1}{r}\frac{\partial}{\partial r}$.
 Die Helmholtz-Gleichung~\eqref{bessel:herleitung:eqn:helmholtz} wird damit zu
 \begin{equation}
 \frac{\partial^2 v}{\partial r^2}
@@ -127,11 +174,8 @@ k^2 v
 0.
 \label{bessel:herleitung:eqn:helmholtzpolar}
 \end{equation}
-Die Koeffizienten $1/r$ und $1/r^2$ sind der entscheidende Unterschied
-zum kartesischen Fall.
-Sie sind bei $r=0$ singulär, und diese Singularität wird uns im
-nächsten Abschnitt wieder begegnen.
- 
+Die Koeffizienten $1/r$ und $1/r^2$ sind der entscheidende Unterschied zum kartesischen Fall.
+Sie sind bei $r=0$ singulär, und diese Singularität wird uns im nächsten Abschnitt wieder begegnen.
 Nun separiert man ein zweites Mal, diesmal in Radius und Winkel,
 \begin{equation}
 v(r,\varphi)
@@ -139,15 +183,13 @@ v(r,\varphi)
 R(r)\,\Phi(\varphi).
 \label{bessel:herleitung:eqn:radialsep}
 \end{equation}
-Einsetzen in~\eqref{bessel:herleitung:eqn:helmholtzpolar} und
-Multiplikation mit $r^2/(R\Phi)$ ergibt
+Einsetzen in~\eqref{bessel:herleitung:eqn:helmholtzpolar} und Multiplikation mit $r^2/(R\Phi)$ ergibt
 \[
 \frac{r^2R''(r) + rR'(r) + k^2r^2R(r)}{R(r)}
 =
 -\frac{\Phi''(\varphi)}{\Phi(\varphi)}.
 \]
-Wieder hängt die linke Seite nur von $r$ ab und die rechte nur von
-$\varphi$, beide sind also konstant.
+Wieder hängt die linke Seite nur von $r$ ab und die rechte nur von $\varphi$, beide sind also konstant.
 Wir nennen die Konstante $n^2$.
  
 Für den Winkelanteil bleibt
@@ -155,14 +197,11 @@ Für den Winkelanteil bleibt
 \Phi''(\varphi) + n^2\Phi(\varphi) = 0
 \label{bessel:herleitung:eqn:winkel}
 \end{equation}
-mit den Lösungen $\Phi(\varphi)=\cos n\varphi$ und
-$\Phi(\varphi)=\sin n\varphi$.
+mit den Lösungen $\Phi(\varphi)=\cos n\varphi$ und $\Phi(\varphi)=\sin n\varphi$.
 Hier kommt eine Bedingung ins Spiel, die es beim Rechteck nicht gibt.
-Die Winkelkoordinate ist periodisch, es muss
-$\Phi(\varphi+2\pi)=\Phi(\varphi)$ gelten.
+Die Winkelkoordinate ist periodisch, es muss $\Phi(\varphi+2\pi)=\Phi(\varphi)$ gelten.
 Daraus folgt $n\in\mathbb{Z}$.
-Die Separationskonstante ist also nicht frei wählbar, sondern durch die
-Geometrie auf ganze Zahlen festgelegt.
+Die Separationskonstante ist also nicht frei wählbar, sondern durch die Geometrie auf ganze Zahlen festgelegt.
  
 %
 % Die Bessel-Differentialgleichung

@@ -3,10 +3,6 @@
 %
 % (c) 2026 Gian Cavegn, OST Ostschweizer Fachhochschule
 %
-% !TEX root = ../../buch.tex
-% !TEX encoding = UTF-8
-% !TeX spellcheck = de_CH
-%
 \section{Lösung mit verallgemeinerten Potenzreihen
 \label{bessel:section:loesung}}
 \kopfrechts{Lösung}
@@ -17,9 +13,6 @@
 % Der Mehrwert liegt darin, dass die Bessel-Gleichung ein besonders
 % sauberer Spezialfall ist.
 % Es gilt F(varrho) = varrho^2 - nu^2, also varrho = +- nu.
-%
-% Notation bewusst wie im Buch, also varrho für den Exponenten der
-% verallgemeinerten Potenzreihe, nu für die Ordnung.
 %
 Die Bessel-Gleichung
 \begin{equation}
@@ -170,14 +163,51 @@ a_{2k}
 \end{equation}
 Der Nenner wächst wie $4^k(k!)^2$, die Reihe konvergiert daher für alle $x\in\mathbb{R}$.
 
-% [TODO: Konvergenz sauber mit dem Quotientenkriterium ausführen,
-%        Verweis auf den Konvergenzradius-Abschnitt im Buch]
+Das lässt sich mit dem Quotientenkriterium sauber begründen.
+Nach~\eqref{buch:differentialgleichungen:verallgemeinert:eqn:gewoehnlich} unterscheidet sich die verallgemeinerte Potenzreihe von der
+gewöhnlichen Potenzreihe $\sum_k a_kx^k$ nur um den Faktor $x^{\varrho}$, das Konvergenzverhalten ist also dasselbe.
+Weil alle ungeraden Koeffizienten verschwinden, ist der Quotient zweier aufeinanderfolgender nicht verschwindender Glieder nach
+\eqref{bessel:loesung:eqn:rekursionnu}
+\[
+\biggl|
+\frac{a_{2k+2}\,x^{2k+2}}{a_{2k}\,x^{2k}}
+\biggr|
+=
+\frac{x^2}{4(k+1)(k+1+\nu)}
+\longrightarrow
+0
+\qquad (k\to\infty).
+\]
+Für jedes feste $x$ ist dieser Grenzwert kleiner als eins, die Reihe konvergiert also auf der ganzen reellen Achse.
+Der Konvergenzradius ist unendlich, und $x^{-\nu}J_\nu(x)$ ist eine ganze Funktion.
  
 %
 % Die Bessel-Funktion erster Art
 %
 \subsection{Die Bessel-Funktion erster Art
 \label{bessel:loesung:subsection:jnu}}
+
+Dafür brauchen wir die Gammafunktion, die im übrigen Buch nicht vorkommt.
+Für $\operatorname{Re}z>0$ ist sie durch das Eulersche Integral
+\begin{equation}
+\Gamma(z)
+=
+\int_0^\infty t^{z-1}e^{-t}\,dt
+\label{bessel:loesung:eqn:gammadef}
+\end{equation}
+definiert.
+Partielle Integration liefert die Funktionalgleichung
+\begin{equation}
+\Gamma(z+1) = z\,\Gamma(z),
+\label{bessel:loesung:eqn:gammafunktional}
+\end{equation}
+und wegen $\Gamma(1)=1$ folgt daraus $\Gamma(n+1)=n!$ für $n\in\mathbb{N}$.
+Die Gammafunktion ist also eine Fortsetzung der Fakultät auf komplexe Argumente.
+Mit~\eqref{bessel:loesung:eqn:gammafunktional} in der Form $\Gamma(z)=\Gamma(z+1)/z$ lässt sie sich im Sinne von Abschnitt~\ref{buch:analytisch:section:fortsetzung} auf ganz $\mathbb{C}$ ausser den Punkten $0,-1,-2,\dots$ analytisch fortsetzen.
+Dort hat sie einfache Pole, ihr Kehrwert $1/\Gamma$ ist deshalb eine ganze Funktion und verschwindet an genau diesen Stellen.
+Schliesslich ist $\Gamma(\frac12)=\sqrt{\pi}$.
+Mehr wird im Folgenden nicht gebraucht, für eine ausführliche Darstellung sei auf \cite{bessel:abramowitz} verwiesen.
+
 Der Koeffizient $a_0$ ist frei wählbar.
 Die übliche Normierung ist
 \begin{equation}
@@ -228,8 +258,41 @@ J_0(x)
 \dots,
 \]
 der an die Reihe des Kosinus erinnert, aber schneller abfällt.
-% [TODO: Abbildung mit J_0, J_1, J_2 auf dem Intervall [0,20],
-%        pgfplots, Nullstellen markieren]
+Abbildung~\ref{bessel:loesung:fig:jnu} zeigt die ersten drei
+Bessel-Funktionen erster Art.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	width=\textwidth,
+	height=6cm,
+	xlabel={$x$},
+	xmin=0, xmax=20,
+	ymin=-0.6, ymax=1.05,
+	axis lines=middle,
+	grid=both,
+	grid style={very thin,gray!25},
+	legend pos=north east,
+	legend cell align=left,
+	tick label style={font=\small}
+]
+\addplot[thick,blue]       table[x=x,y=J0] {papers/bessel/images/besselj.dat};
+\addlegendentry{$J_0(x)$}
+\addplot[thick,red]        table[x=x,y=J1] {papers/bessel/images/besselj.dat};
+\addlegendentry{$J_1(x)$}
+\addplot[thick,darkgreen]  table[x=x,y=J2] {papers/bessel/images/besselj.dat};
+\addlegendentry{$J_2(x)$}
+\addplot[only marks,mark=*,mark size=1.3pt,blue]
+	table[x=x,y=y] {papers/bessel/images/besselj-zeros.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Die Bessel-Funktionen $J_0$, $J_1$ und $J_2$.
+Die Punkte markieren die Nullstellen von $J_0$.
+Die Abstände der Nullstellen sind nicht konstant, sie nähern sich für wachsendes $x$ aber dem Wert $\pi$ an.
+Die Amplitude klingt wie $1/\sqrt{x}$ ab.
+\label{bessel:loesung:fig:jnu}}
+\end{figure}
 Für kleine Argumente dominiert der erste Term,
 \begin{equation}
 J_\nu(x)
@@ -240,7 +303,7 @@ J_\nu(x)
 \label{bessel:loesung:eqn:kleinx}
 \end{equation}
 insbesondere ist $J_0(0)=1$ und $J_\nu(0)=0$ für $\nu>0$.
- 
+
 %
 % Die zweite Lösung
 %
@@ -257,85 +320,48 @@ J_{-\nu}(x)
 \Bigl(\frac{x}{2}\Bigr)^{2k-\nu}.
 \label{bessel:loesung:eqn:jminusnu}
 \end{equation}
- 
-Ob damit tatsächlich eine zweite, unabhängige Lösung vorliegt, hängt vom Wert von $\nu$ ab.
-Ist $\nu\notin\mathbb{Z}$, so verhält sich $J_\nu$ bei $x=0$ wie $x^{\nu}$ und $J_{-\nu}$ wie $x^{-\nu}$.
-Die eine Funktion bleibt beschränkt, die andere nicht, sie können also nicht proportional sein.
-In diesem Fall ist
+
+Für $\nu\notin\mathbb{Z}$ ist damit alles erledigt.
+Bei $x=0$ verhält sich $J_\nu$ wie $x^{\nu}$ und $J_{-\nu}$ wie $x^{-\nu}$, die eine Funktion bleibt also beschränkt und die andere nicht.
+Proportional können sie deshalb nicht sein, und
 \[
 y(x)
 =
 C_1 J_\nu(x) + C_2 J_{-\nu}(x)
 \]
-die allgemeine Lösung.
+ist die allgemeine Lösung.
+
 Für ganzzahliges $\nu=n$ bricht dieses Argument zusammen.
-Die Gammafunktion hat an den nichtpositiven ganzen Zahlen Pole, ihr Kehrwert verschwindet dort.
-In der Reihe~\eqref{bessel:loesung:eqn:jminusnu} fallen deshalb die ersten $n$ Glieder weg, und eine Indexverschiebung ergibt
-\begin{equation}
-J_{-n}(x) = (-1)^n J_n(x).
-\label{bessel:loesung:eqn:jminusn}
-\end{equation}
-% [TODO: Indexverschiebung k -> k+n explizit vorrechnen]
-Die zweite Wurzel der Indexgleichung liefert also nichts Neues.
+Die Gammafunktion hat an den nichtpositiven ganzen Zahlen Pole, ihr Kehrwert verschwindet dort, und in~\eqref{bessel:loesung:eqn:jminusnu} fallen deshalb die ersten $n$ Glieder weg.
+Mit der Substitution $k=m+n$ wird daraus
+\begin{align*}
+J_{-n}(x)
+&=
+\sum_{k=n}^\infty
+\frac{(-1)^k}{k!\,\Gamma(k-n+1)}
+\Bigl(\frac{x}{2}\Bigr)^{2k-n}
+=
+\sum_{m=0}^\infty
+\frac{(-1)^{m+n}}{(m+n)!\,\Gamma(m+1)}
+\Bigl(\frac{x}{2}\Bigr)^{2m+n}
+\\
+&=
+(-1)^n
+\sum_{m=0}^\infty
+\frac{(-1)^m}{m!\,(m+n)!}
+\Bigl(\frac{x}{2}\Bigr)^{2m+n}
+=
+(-1)^n J_n(x),
+\end{align*}
+die zweite Wurzel der Indexgleichung liefert also nichts Neues.
 Das ist kein Zufall, sondern der im Fuchs-Abschnitt beschriebene Ausnahmefall.
 Die beiden Wurzeln $\varrho_1=n$ und $\varrho_2=-n$ unterscheiden sich um die ganze Zahl $2n$, und dann kann die Rekursion für den kleineren Exponenten zusammenbrechen.
-Man definiert deshalb
-\begin{definition}
-\label{bessel:loesung:def:ynu}
-Die \emph{Bessel-Funktion zweiter Art} der Ordnung $\nu$
+
+Eine zweite, von $J_n$ unabhängige Lösung existiert trotzdem.
+Sie enthält einen logarithmischen Term und lässt sich deshalb durch keine verallgemeinerte Potenzreihe~\eqref{bessel:loesung:eqn:ansatz} darstellen.
+Man nennt sie die \emph{Bessel-Funktion zweiter Art} $Y_\nu$
 \index{Bessel-Funktion zweiter Art}%
-oder \emph{Neumann-Funktion}
-\index{Neumann-Funktion}%
-ist
-\begin{equation}
-Y_\nu(x)
-=
-\frac{J_\nu(x)\cos(\nu\pi) - J_{-\nu}(x)}{\sin(\nu\pi)}
-\label{bessel:loesung:eqn:ynu}
-\end{equation}
-für $\nu\notin\mathbb{Z}$ und
-\begin{equation}
-Y_n(x)
-=
-\lim_{\nu\to n} Y_\nu(x)
-\label{bessel:loesung:eqn:yn}
-\end{equation}
-für $n\in\mathbb{Z}$.
-\end{definition}
- 
-Für nicht ganzzahliges $\nu$ ist $Y_\nu$ nur eine Linearkombination von $J_\nu$ und $J_{-\nu}$ und damit als Lösung nichts Neues.
-Der Sinn der Definition liegt darin, dass der Grenzwert \eqref{bessel:loesung:eqn:yn} existiert und dort eine von $J_n$ unabhängige Lösung liefert, wo $J_{-n}$ versagt.
-Zähler und Nenner von~\eqref{bessel:loesung:eqn:ynu} streben für $\nu\to n$ beide gegen null, und die Regel von de l'Hôpital liefert einen endlichen Grenzwert.
-% [TODO: den Grenzübergang wenigstens für Y_0 durchrechnen oder
-%        auf Watson verweisen]
- 
-Dieser Grenzwert enthält einen logarithmischen Term.
-Für $\nu=0$ etwa ist
-\begin{equation}
-Y_0(x)
-=
-\frac{2}{\pi}
-\Bigl(
-\ln\frac{x}{2} + \gamma
-\Bigr)
-J_0(x)
-+
-\frac{2}{\pi}
-\sum_{k=1}^\infty
-\frac{(-1)^{k+1}}{(k!)^2}
-\Bigl(\frac{x}{2}\Bigr)^{2k}
-\sum_{m=1}^k \frac{1}{m},
-\label{bessel:loesung:eqn:y0}
-\end{equation}
-wobei $\gamma$ die Euler-Mascheroni-Konstante bezeichnet.
-Der Logarithmus lässt sich durch keine verallgemeinerte Potenzreihe darstellen, und deshalb konnte der Ansatz \eqref{bessel:loesung:eqn:ansatz} diese Lösung nicht finden.
-Insbesondere gilt $Y_\nu(x)\to-\infty$ für $x\to 0$.
-Damit ist die allgemeine Lösung der Bessel-Gleichung für jede Ordnung
-\begin{equation}
-y(x)
-=
-C_1 J_\nu(x) + C_2 Y_\nu(x).
-\label{bessel:loesung:eqn:allgemein}
-\end{equation}
-In Anwendungen auf ein Gebiet, das den Ursprung enthält, etwa bei der kreisförmigen Membran, muss $C_2=0$ gesetzt werden, weil die Lösung dort beschränkt bleiben muss.
-Bei Ringgebieten oder im Aussenraum wird $Y_\nu$ dagegen gebraucht.
+und gewinnt sie als Grenzwert einer Linearkombination von $J_\nu$ und $J_{-\nu}$ für $\nu\to n$.
+Für $x\to 0$ gilt $Y_\nu(x)\to-\infty$.
+Im weiteren Verlauf dieses Kapitels wird $Y_\nu$ nicht gebraucht, weil alle behandelten Anwendungen auf Gebieten spielen, die den Ursprung enthalten, und dort muss die Lösung beschränkt bleiben.
+Bei Ringgebieten und Aussenraumproblemen ist $Y_\nu$ dagegen unentbehrlich, die Einzelheiten finden sich bei \cite{bessel:watson}.

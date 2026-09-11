@@ -23,6 +23,7 @@ Die Reihe~\eqref{bessel:loesung:eqn:jnu} definiert die Bessel-Funktionen, ist zu
 Dieser Abschnitt stellt die Eigenschaften zusammen, mit denen man tatsächlich arbeitet.
 Es lohnt sich, dabei immer den Vergleich mit den trigonometrischen Funktionen im Auge zu behalten.
 Fast jede Eigenschaft von $J_\nu$ hat ein Gegenstück bei $\cos$ und $\sin$.
+
 %
 % Rekursionsformeln
 %
@@ -117,11 +118,53 @@ J_n(x)\, t^n.
 \end{satz}
  
 \begin{proof}
-Man entwickelt die beiden Faktoren $e^{xt/2}$ und $e^{-x/(2t)}$ je in ihre Exponentialreihe, multipliziert die Reihen aus und sammelt die Terme mit gleicher Potenz von $t$.
-Der Koeffizient von $t^n$ ist dann genau die Reihe
-\eqref{bessel:loesung:eqn:jnu}.
+Beide Faktoren lassen sich in ihre Exponentialreihe entwickeln,
+\[
+e^{\frac{x}{2}t}
+=
+\sum_{p=0}^\infty
+\frac{1}{p!}
+\Bigl(\frac{x}{2}\Bigr)^{p} t^{p},
+\qquad
+e^{-\frac{x}{2t}}
+=
+\sum_{q=0}^\infty
+\frac{(-1)^q}{q!}
+\Bigl(\frac{x}{2}\Bigr)^{q} t^{-q}.
+\]
+Für $t\ne 0$ konvergieren beide Reihen absolut, das Produkt darf deshalb ausmultipliziert und beliebig umgeordnet werden,
+\[
+e^{\frac{x}{2}\left(t-\frac{1}{t}\right)}
+=
+\sum_{p=0}^\infty
+\sum_{q=0}^\infty
+\frac{(-1)^q}{p!\,q!}
+\Bigl(\frac{x}{2}\Bigr)^{p+q}
+t^{p-q}.
+\]
+Den Koeffizienten von $t^n$ erhält man, indem man alle Paare $(p,q)$ mit $p-q=n$ zusammenfasst.
+Für $n\ge 0$ sind das die Paare $p=n+k$ und $q=k$ mit $k\ge 0$, und wegen $p+q=2k+n$ ist der Koeffizient
+\[
+\sum_{k=0}^\infty
+\frac{(-1)^k}{(n+k)!\,k!}
+\Bigl(\frac{x}{2}\Bigr)^{2k+n}
+=
+J_n(x)
+\]
+nach~\eqref{bessel:loesung:eqn:jnu}.
+Für $n=-m$ mit $m>0$ kommt die Bedingung $p\ge 0$ hinzu, die Summation beginnt also erst bei $k=m$.
+Die Substitution $k=m+j$ liefert
+\[
+\sum_{j=0}^\infty
+\frac{(-1)^{m+j}}{j!\,(m+j)!}
+\Bigl(\frac{x}{2}\Bigr)^{2j+m}
+=
+(-1)^m J_m(x)
+=
+J_{-m}(x),
+\]
+wobei im letzten Schritt das in Abschnitt~\ref{bessel:loesung:subsection:ynu} bewiesene Verhalten von $J_{-n}$ verwendet wurde.
 \end{proof}
-% [TODO: das Cauchy-Produkt explizit ausschreiben, mindestens für n>=0]
  
 Setzt man $t=e^{i\tau}$, so wird $t-1/t = 2i\sin\tau$, und \eqref{bessel:eigenschaften:eqn:erzeugend} geht über in
 \begin{equation}
@@ -173,23 +216,69 @@ Für $\nu\ge 0$ hat $J_\nu$ unendlich viele positive Nullstellen
 und es gilt $j_{\nu,m}\to\infty$.
 Zwischen je zwei aufeinanderfolgenden Nullstellen von $J_\nu$ liegt genau eine Nullstelle von $J_{\nu+1}$ und umgekehrt.
 \end{satz}
-% [TODO: Beweis über die Sturmsche Vergleichstheorie oder über die
-%        Substitution u = sqrt(x) y, die auf u'' + (1 + (1/4-nu^2)/x^2)u = 0
-%        führt. Diese Substitution ist auch für die Asymptotik nützlich.]
+
+\begin{proof}
+Wir bringen die Gleichung zunächst in eine Form ohne ersten
+Ableitungsterm.
+Mit $y(x)=x^{-1/2}u(x)$ ist
+\[
+y' = -\tfrac12 x^{-3/2}u + x^{-1/2}u',
+\qquad
+y'' = \tfrac34 x^{-5/2}u - x^{-3/2}u' + x^{-1/2}u'' ,
+\]
+und Einsetzen in~\eqref{bessel:loesung:eqn:bessel} liefert
+\[
+x^{3/2}u''
++
+\bigl(\tfrac34-\tfrac12\bigr)x^{-1/2}u
++
+\bigl(x^{2}-\nu^2\bigr)x^{-1/2}u
+=
+0 .
+\]
+Division durch $x^{3/2}$ ergibt die Normalform
+\begin{equation}
+u'' + q(x)\,u = 0,
+\qquad
+q(x) = 1 + \frac{\frac14-\nu^2}{x^2} .
+\label{bessel:eigenschaften:eqn:normalform}
+\end{equation}
+Für $x>0$ haben $u$ und $y$ dieselben Nullstellen.
+
+Wegen $q(x)\to 1$ für $x\to\infty$ gibt es ein $X>0$ mit $q(x)>\frac12$ für alle $x>X$.
+Angenommen, $J_\nu$ hätte nur endlich viele positive Nullstellen.
+Dann hat $u$ auf einem Intervall $[X',\infty)$ mit $X'\ge X$ festes Vorzeichen, ohne Einschränkung sei $u>0$.
+Aus~\eqref{bessel:eigenschaften:eqn:normalform} folgt dort $u''=-q\,u<-\frac12 u<0$, die Funktion $u$ ist also konkav und $u'$ fällt monoton.
+Ist $u'(x_1)<0$ für ein $x_1>X'$, so gilt $u'(x)\le u'(x_1)<0$ für alle $x>x_1$, und $u$ fällt mindestens linear und erreicht den Wert null.
+Ist dagegen $u'\ge 0$ auf ganz $[X',\infty)$, so ist $u(x)\ge u(X')>0$ und damit $u''(x)\le-\frac12u(X')$ für alle $x>X'$.
+Dann fällt $u'$ unbeschränkt und wird negativ, was auf den ersten Fall zurückführt.
+Beide Fälle widersprechen der Annahme, $J_\nu$ hat also unendlich viele positive Nullstellen.
+Da $J_\nu$ nicht identisch verschwindet, sind ihre Nullstellen isoliert und können sich nicht häufen, folglich gilt $j_{\nu,m}\to\infty$.
+
+Die Verschachtelung folgt aus dem Satz von Rolle.
+Sind $j_{\nu,m}$ und $j_{\nu,m+1}$ zwei aufeinanderfolgende Nullstellen von $J_\nu$, so verschwindet $x^{-\nu}J_\nu(x)$ an beiden Enden des Intervalls.
+Nach~\eqref{bessel:eigenschaften:eqn:ableitung2} ist die Ableitung dieser Funktion gleich $-x^{-\nu}J_{\nu+1}(x)$, und sie muss nach Rolle dazwischen verschwinden.
+Also liegt dort eine Nullstelle von $J_{\nu+1}$.
+Umgekehrt verschwindet zwischen zwei aufeinanderfolgenden Nullstellen von $J_{\nu+1}$ die Funktion $x^{\nu+1}J_{\nu+1}(x)$ an beiden Enden, und ihre Ableitung ist nach~\eqref{bessel:eigenschaften:eqn:ableitung1}, angewandt mit $\nu+1$ anstelle von $\nu$, gleich $x^{\nu+1}J_\nu(x)$.
+\end{proof}
  
 Die Nullstellen sind nicht in geschlossener Form angebbar, sie müssen numerisch bestimmt werden.
-Die ersten Werte sind
-\begin{center}
-\begin{tabular}{c|ccc}
-$\nu$ & $j_{\nu,1}$ & $j_{\nu,2}$ & $j_{\nu,3}$ \\
+Tabelle~\ref{bessel:eigenschaften:tab:nullstellen} zeigt die ersten Werte.
+
+\begin{table}
+\centering
+\caption{Die ersten vier positiven Nullstellen $j_{\nu,m}$ der Bessel-Funktionen $J_\nu$ für ganzzahlige Ordnung, gerundet auf vier Nachkommastellen.
+Die Werte sind \cite[Abschnitt~9.5]{bessel:abramowitz} entnommen.
+\label{bessel:eigenschaften:tab:nullstellen}}
+\begin{tabular}{c|cccc}
+$\nu$ & $j_{\nu,1}$ & $j_{\nu,2}$ & $j_{\nu,3}$ & $j_{\nu,4}$ \\
 \hline
-$0$ & $2.4048$ & $5.5201$ & $8.6537$ \\
-$1$ & $3.8317$ & $7.0156$ & $10.1735$ \\
-$2$ & $5.1356$ & $8.4172$ & $11.6198$
+$0$ & $2.4048$ & $5.5201$ & $8.6537$ & $11.7915$ \\
+$1$ & $3.8317$ & $7.0156$ & $10.1735$ & $13.3237$ \\
+$2$ & $5.1356$ & $8.4172$ & $11.6198$ & $14.7960$ \\
+$3$ & $6.3802$ & $9.7610$ & $13.0152$ & $16.2235$
 \end{tabular}
-\end{center}
-% [TODO: Tabelle als richtige Table-Umgebung mit Caption und Label,
-%        Quelle für die Werte angeben (Abramowitz-Stegun)]
+\end{table}
  
 Anders als bei $\sin$ sind die Nullstellen nicht äquidistant, ihre Abstände nähern sich aber für grosse $x$ dem Wert $\pi$ an.
 Das ist die Erklärung für den unharmonischen Klang einer Trommel.
@@ -202,8 +291,52 @@ Die Eigenfrequenzen der kreisförmigen Membran vom Radius $a$ ergeben sich aus d
 \end{equation}
 Das Verhältnis der beiden tiefsten rotationssymmetrischen Moden ist $j_{0,2}/j_{0,1}\approx 2.295$ und damit kein rationales Vielfaches des Grundtons.
 Bei der Saite dagegen liegen die Nullstellen des Sinus äquidistant, und die Obertöne sind ganzzahlige Vielfache der Grundfrequenz.
-% [TODO: Abbildung der ersten Membranmoden (0,1), (1,1), (2,1), (0,2)
-%        mit Knotenlinien]
+Abbildung~\ref{bessel:eigenschaften:fig:moden} zeigt die vier tiefsten Moden mit ihren Knotenlinien.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+% Mode (0,1)
+\begin{scope}
+	\draw[thick] (0,0) circle (1.2);
+	\node at (0,0) {$+$};
+	\node at (0,-1.7) {$(0,1)$};
+\end{scope}
+% Mode (1,1)
+\begin{scope}[xshift=3.1cm]
+	\draw[thick] (0,0) circle (1.2);
+	\draw[dashed] (0,-1.2) -- (0,1.2);
+	\node at (-0.55,0) {$+$};
+	\node at (0.55,0) {$-$};
+	\node at (0,-1.7) {$(1,1)$};
+\end{scope}
+% Mode (2,1)
+\begin{scope}[xshift=6.2cm]
+	\draw[thick] (0,0) circle (1.2);
+	\draw[dashed] (-0.849,-0.849) -- (0.849,0.849);
+	\draw[dashed] (-0.849,0.849) -- (0.849,-0.849);
+	\node at (0,0.62) {$+$};
+	\node at (0,-0.62) {$+$};
+	\node at (-0.62,0) {$-$};
+	\node at (0.62,0) {$-$};
+	\node at (0,-1.7) {$(2,1)$};
+\end{scope}
+% Mode (0,2)
+\begin{scope}[xshift=9.3cm]
+	\draw[thick] (0,0) circle (1.2);
+	\draw[dashed] (0,0) circle (0.523);
+	\node at (0,0) {$+$};
+	\node at (0,0.86) {$-$};
+	\node at (0,-1.7) {$(0,2)$};
+\end{scope}
+\end{tikzpicture}
+\caption{Die vier tiefsten Schwingungsmoden der kreisförmigen Membran.
+Der erste Index $n$ zählt die Knotendurchmesser und stammt aus dem Winkelanteil $\cos n\varphi$, der zweite Index $m$ nummeriert die Nullstelle $j_{n,m}$ und bestimmt die Zahl der Knotenkreise im Innern.
+Die gestrichelten Linien sind die Knotenlinien, die Vorzeichen geben die Phase der Auslenkung an.
+Der innere Knotenkreis der Mode $(0,2)$ liegt bei $j_{0,1}/j_{0,2}\approx 0.436$ des Radius.
+Die Frequenzen verhalten sich nach \eqref{bessel:eigenschaften:eqn:eigenfrequenzen} wie $1 : 1.593 : 2.136 : 2.295$.
+\label{bessel:eigenschaften:fig:moden}}
+\end{figure}
  
 %
 % Orthogonalität
@@ -228,9 +361,75 @@ s\,ds
 \label{bessel:eigenschaften:eqn:orthogonalitaet}
 \end{equation}
 \end{satz}
-% [TODO: Beweis über die Lagrange-Identität / partielle Integration
-%        der Bessel-Gleichung in selbstadjungierter Form
-%        (x R')' + (k^2 x - nu^2/x) R = 0]
+
+\begin{proof}
+Wir schreiben $\alpha=j_{\nu,m}$ und $\beta=j_{\nu,l}$ sowie $u(s)=J_\nu(\alpha s)$ und $v(s)=J_\nu(\beta s)$.
+Setzt man $x=\alpha s$ in~\eqref{bessel:loesung:eqn:bessel} ein und dividiert durch $s$, so erhält man wegen $su''+u'=(su')'$ die selbstadjungierte Form
+\begin{equation}
+(s\,u')'
++
+\Bigl(\alpha^2 s - \frac{\nu^2}{s}\Bigr) u
+=
+0,
+\label{bessel:eigenschaften:eqn:selbstadjungiert}
+\end{equation}
+und entsprechend für $v$ mit $\beta$ anstelle von $\alpha$.
+
+Multipliziert man~\eqref{bessel:eigenschaften:eqn:selbstadjungiert} mit $v$, die Gleichung für $v$ mit $u$ und subtrahiert, so heben sich die Terme mit $\nu^2/s$ weg und es bleibt
+\[
+v\,(s\,u')' - u\,(s\,v')'
++
+(\alpha^2-\beta^2)\,s\,uv
+=
+0 .
+\]
+Der erste Teil ist eine vollständige Ableitung, denn es gilt
+$v(su')'-u(sv')' = \frac{d}{ds}\bigl[s(u'v-uv')\bigr]$.
+Integration über $[0,1]$ liefert deshalb
+\[
+\Bigl[\,s\bigl(u'(s)v(s)-u(s)v'(s)\bigr)\Bigr]_0^1
++
+(\alpha^2-\beta^2)
+\int_0^1 s\,u(s)v(s)\,ds
+=
+0 .
+\]
+Am unteren Rand verschwindet die Klammer, weil $u$ und $v$ nach~\eqref{bessel:loesung:eqn:kleinx} bei $s=0$ wie $s^{\nu}$ verschwinden und der ganze Ausdruck daher von der Ordnung $s^{2\nu}$ ist.
+Am oberen Rand verschwindet sie, weil $\alpha$ und $\beta$ Nullstellen von $J_\nu$ sind und damit $u(1)=v(1)=0$ gilt.
+Für $m\ne l$ ist $\alpha^2\ne\beta^2$, und es folgt die behauptete Orthogonalität.
+
+Für $m=l$ multiplizieren wir~\eqref{bessel:eigenschaften:eqn:selbstadjungiert} mit $2su'$ und erhalten
+\[
+\frac{d}{ds}\bigl[(s\,u')^2\bigr]
++
+(\alpha^2s^2-\nu^2)\,\frac{d}{ds}\bigl[u^2\bigr]
+=
+0 .
+\]
+Integration über $[0,1]$ und partielle Integration des zweiten Terms ergeben
+\[
+2\alpha^2
+\int_0^1 s\,u(s)^2\,ds
+=
+\Bigl[\,(s\,u')^2 + (\alpha^2s^2-\nu^2)u^2\,\Bigr]_0^1 .
+\]
+Am unteren Rand verschwinden beide Summanden wieder mit der Ordnung $s^{2\nu}$, am oberen Rand fällt wegen $u(1)=0$ der zweite Summand weg.
+Mit $u'(1)=\alpha J_\nu'(\alpha)$ bleibt
+\[
+\int_0^1 s\,J_\nu(\alpha s)^2\,ds
+=
+\frac{1}{2}\,J_\nu'(\alpha)^2 .
+\]
+Schliesslich ist $J_\nu(\alpha)=0$, aus~\eqref{bessel:eigenschaften:eqn:dreiterm} folgt deshalb $J_{\nu-1}(\alpha)=-J_{\nu+1}(\alpha)$, und~\eqref{bessel:eigenschaften:eqn:ableitungrek} liefert
+\[
+2J_\nu'(\alpha)
+=
+J_{\nu-1}(\alpha)-J_{\nu+1}(\alpha)
+=
+-2J_{\nu+1}(\alpha).
+\]
+Einsetzen ergibt die behauptete Normierung.
+\end{proof}
  
 Das Gewicht $s$ im Integral ist kein Schönheitsfehler, sondern das Flächenelement der Polarkoordinaten, $dA = r\,dr\,d\varphi$.
 Die Orthogonalität ist also die natürliche Orthogonalität auf der Kreisscheibe.
@@ -281,22 +480,30 @@ O(x^{-3/2}).
 \label{bessel:eigenschaften:eqn:asymptotiky}
 \end{align}
 \end{satz}
-% [TODO: Herleitung mindestens plausibel machen über die Substitution
-%        u(x) = sqrt(x) y(x), die auf u'' + (1 + (1/4-nu^2)/x^2) u = 0
-%        führt; für grosse x ist das die Schwingungsgleichung u'' + u = 0.]
- 
-Die Substitution $u(x)=\sqrt{x}\,y(x)$ macht diese Aussage verständlich.
-Sie überführt die Bessel-Gleichung in
-\[
-u''
-+
-\Bigl(
-1 + \frac{\tfrac14-\nu^2}{x^2}
-\Bigr) u
+
+Die im Beweis von Satz~\ref{bessel:eigenschaften:satz:nullstellen} hergeleitete Normalform~\eqref{bessel:eigenschaften:eqn:normalform} macht diese Aussage verständlich.
+Der Störterm $(\frac14-\nu^2)/x^2$ verschwindet für $x\to\infty$, und übrig bleibt die gewöhnliche Schwingungsgleichung $u''+u=0$.
+Die Lösung ist also asymptotisch eine Schwingung der Kreisfrequenz eins, und der Faktor $1/\sqrt{x}$ kommt von der Rücksubstitution $y=x^{-1/2}u$.
+
+Dieses Argument liefert die Gestalt der Asymptotik, aber nicht die beiden Konstanten.
+Sie lassen sich an einem Sonderfall ablesen.
+Für $\nu=\frac12$ ist $\frac14-\nu^2=0$, die Normalform lautet dann exakt $u''+u=0$, und die Asymptotik ist keine Näherung mehr, sondern eine Identität.
+Tatsächlich gilt
+\begin{equation}
+J_{1/2}(x)
 =
-0,
-\]
-und für grosse $x$ ist das bis auf einen verschwindenden Term die gewöhnliche Schwingungsgleichung $u''+u=0$.
+\sqrt{\frac{2}{\pi x}}\,\sin x ,
+\label{bessel:eigenschaften:eqn:jhalb}
+\end{equation}
+wie man durch Einsetzen von $\nu=\frac12$ in die Reihe~\eqref{bessel:loesung:eqn:jnu} und Vergleich mit der Sinusreihe bestätigt.
+Setzt man $\nu=\frac12$ in~\eqref{bessel:eigenschaften:eqn:asymptotikj} ein, so ist das Phasenargument $x-\frac{\pi}{4}-\frac{\pi}{4}=x-\frac{\pi}{2}$, und wegen $\cos(x-\frac{\pi}{2})=\sin x$ stimmt die Formel exakt mit~\eqref{bessel:eigenschaften:eqn:jhalb} überein.
+Damit sind sowohl die Amplitude $\sqrt{2/\pi}$ als auch der Phasenanteil $-\pi/4$ festgelegt.
+
+Der verbleibende Phasenanteil $-\nu\pi/2$ lässt sich ebenfalls kontrollieren.
+Leitet man die Asymptotik von $x^{-\nu}J_\nu$ ab und vergleicht mit~\eqref{bessel:eigenschaften:eqn:ableitung2}, so verschiebt jeder Schritt von $\nu$ auf $\nu+1$ die Phase um genau $\pi/2$.
+Ein vollständiger Beweis für beliebiges $\nu$ verlangt eine echte asymptotische Analyse, etwa die Methode der stationären Phase angewandt auf die Integraldarstellung~\eqref{bessel:eigenschaften:eqn:integral}.
+Die Einzelheiten finden sich bei \cite{bessel:watson} und \cite{bessel:dlmf}.
+
 Die Lösung ist also asymptotisch eine Schwingung, und der Faktor $1/\sqrt{x}$ kommt von der Rücksubstitution.
  
 Die Abklingrate $1/\sqrt{x}$ ist physikalisch einleuchtend.
