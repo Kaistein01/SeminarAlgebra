@@ -6,9 +6,11 @@
 dependencies-joukowski =						\
 	papers/joukowski/packages.tex					\
 	papers/joukowski/main.tex					\
-	papers/joukowski/references.bib				\
-	papers/joukowski/teil0.tex					\
-	papers/joukowski/teil1.tex					\
-	papers/joukowski/teil2.tex					\
-	papers/joukowski/teil3.tex
-
+	papers/joukowski/chapters/1_einleitung.tex			\
+	papers/joukowski/chapters/2_voraussetzungen.tex			\
+	papers/joukowski/chapters/3_auftriebskraft.tex			\
+	papers/joukowski/chapters/4_stroemungslinien.tex		\
+	papers/joukowski/chapters/5_komplexe_analysis.tex		\
+	papers/joukowski/chapters/6_anwendungen.tex			\
+	papers/joukowski/chapters/7_beispiel.tex			\
+	papers/joukowski/references.bib	

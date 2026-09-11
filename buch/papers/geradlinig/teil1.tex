@@ -1,58 +1,50 @@
 %
-% teil1.tex -- Beispiel-File für das Paper
+% teil1.tex -- geradlinige Bewegung
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
 %
-\section{Teil 1
-\label{geradlinig:section:teil1}}
-\kopfrechts{Problemstellung}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo.
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-aut fugit, sed quia consequuntur magni dolores eos qui ratione
-voluptatem sequi nesciunt
-\begin{equation}
-\int_a^b x^2\, dx
-=
-\left[ \frac13 x^3 \right]_a^b
-=
-\frac{b^3-a^3}3.
-\label{geradlinig:equation1}
-\end{equation}
-Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-consectetur, adipisci velit, sed quia non numquam eius modi tempora
-incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+\section{Approximative geradlinige Bewegung
+\label{geradlinig:section:approximative_geradlinig}}
+\kopfrechts{Approximative geradlinige Bewegung}
+Der erste approximativ geradlinige Mechanismus war derjenige von James Watt.
+In Abbildung~\ref{fig:watts_link} ist der Mechanismus vereinfacht 
+dargestellt.
+\input{papers/geradlinig/fig/fig-watt-linkage.tex}
+Die beiden gelben Gelenke müssen zwingend gleich lang sein.
+Das grüne Gelenk verbindet anschliessend die beiden Endpunkte 
+der gelben Gelenke.
+Dabei entsteht nur eine approximative Gerade, da der erzeugte Pfad 
+nur in einem begrenzten Bereich nahezu geradlinig ist.
+Den vollständig erzeugten Pfad nennt man die wattsche Kurve.
+Ein Spezialfall der wattschen Kurve ist in Abbildung~\ref{fig:lemniskate} 
+dargestellt oder auch in Abbildung~\ref{buch:integration:homologie:fig:paar}, 
+dabei handelt es sich um die Lemniskate von Bernoulli.
+\index{Lemniskate von Bernoulli}%
+\index{wattsche Kurve}%
+In derselben Abbildung~\ref{fig:lemniskate} ist ersichtlich, 
+dass der Pfad nur im Zentrum einer Geraden entspricht.
+\input{papers/geradlinig/fig/fig-lemniskate.tex}
 
-Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
-Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-esse quam nihil molestiae consequatur, vel illum qui dolorem eum
-fugiat quo voluptas nulla pariatur?
+Später entwickelte Watt eine modifizierte Version seines Mechanismus,
+welcher in Abbildung~\ref{fig:watts_parallel_link} dargestellt ist.
+Diesen liess er anschliessend auch patentieren und verbaute ihn in seiner Maschine,
+gemäss Abbildung~\ref{fig:watts_engine}.
+Diese Konstruktion wird als Parallelbewegungsmechanismus bezeichnet.
+Sie war für den praktischen Einsatz besser geeignet 
+als die ursprüngliche Ausführung, da sich damit zwei Kolben antreiben liessen.
+\input{papers/geradlinig/fig/fig-watts-parallel-link.tex}
 
-\subsection{De finibus bonorum et malorum
-\label{geradlinig:subsection:finibus}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga \eqref{geradlinig:equation1}.
-
-Et harum quidem rerum facilis est et expedita distinctio
-\ref{geradlinig:section:teil2}.
-Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-impedit quo minus id quod maxime placeat facere possimus, omnis
-voluptas assumenda est, omnis dolor repellendus
-\ref{geradlinig:section:teil3}.
-Temporibus autem quibusdam et aut officiis debitis aut rerum
-necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-molestiae non recusandae.
-Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
-voluptatibus maiores alias consequatur aut perferendis doloribus
-asperiores repellat.
-
+Ein weiteres Beispiel ist der Chebyshev-Mechanismus, 
+\index{Chebyshev-Mechanismus}%
+welcher in Abbildung~\ref{fig:chebyshev_link} dargestellt ist.
+Dieser besitzt die gleiche Anzahl an Gelenken wie der Watt-Mechanismus, 
+verwendet jedoch eine andere Anordnung, 
+um eine Rotationsbewegung in eine geradlinige Bewegung umzuwandeln.
+Das Verhältnis der gelben Gelenklänge zur blauen beträgt $2.5:1$.
+Weitere Mechanismen, welche approximative geradlinige Bewegungen erzeugen, 
+sind in~\cite{wiki_straight_line} aufgeführt.
+\input{papers/geradlinig/fig/fig-chebyshev-link.tex}
 

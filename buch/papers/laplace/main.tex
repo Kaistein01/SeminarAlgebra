@@ -6,34 +6,37 @@
 % !TEX root = ../../buch.tex
 % !TEX encoding = UTF-8
 %
-\chapter{Thema\label{chapter:laplace}}
-\kopflinks{Thema}
+
+
+
+\chapter{Die Laplace-Inversion: Vom Bromwich-Integral zur Talbot-Kontur\label{chapter:laplace}}
+\kopflinks{Laplace-Inversion: Vom Bromwich-Integral zur Talbot-Kontur}
 \begin{refsection}
-\chapterauthor{Noel Karlsson\\Simon Widmer}
+\chapterauthor{Noel Karlsson und Simon Widmer}
 
-Ein paar Hinweise für die korrekte Formatierung des Textes
-\begin{itemize}
-\item
-Absätze werden gebildet, indem man eine Leerzeile einfügt.
-Die Verwendung von \verb+\\+ ist nur in Tabellen und Arrays gestattet.
-\item
-Die explizite Platzierung von Bildern ist nicht erlaubt, entsprechende
-Optionen werden gelöscht. 
-Verwenden Sie Labels und Verweise, um auf Bilder hinzuweisen.
-\item
-Beginnen Sie jeden Satz auf einer neuen Zeile. 
-Damit ermöglichen Sie dem Versionsverwaltungssysteme, Änderungen
-in verschiedenen Sätzen von verschiedenen Autoren ohne Konflikt 
-anzuwenden.
-\item 
-Bilden Sie auch für Formeln kurze Zeilen, einerseits der besseren
-Übersicht wegen, aber auch um GIT die Arbeit zu erleichtern.
-\end{itemize}
+\index{Noel Karlsson}%
+\index{Karlsson, Noel}%
+\index{Simon Widmer}%
+\index{Widmer, Simon}%
 
-\input{papers/laplace/teil0.tex}
-\input{papers/laplace/teil1.tex}
-\input{papers/laplace/teil2.tex}
-\input{papers/laplace/teil3.tex}
+\noindent
+Dieses Kapitel behandelt die analytische Rücktransformation der Laplace-Transformation mithilfe komplexer Integration.
+\index{Laplace-Transformation}%
+Der Leser wird anhand eines physikalischen Beispiel in die Anwendung und Theorie unterschiedlicher Integrationspfade zur Berechnung der Inverse eingeführt.
+
+
+\input{papers/laplace/makros.tex}
+
+
+%\input{papers/laplace/teil0.tex}
+\input{papers/laplace/01_einleitung.tex}
+\input{papers/laplace/01_herleitung.tex}
+\input{papers/laplace/02_residuensatz.tex}
+\input{papers/laplace/03_verzweigung.tex}
+\input{papers/laplace/04_endlicher_stab.tex}
+\input{papers/laplace/05_talbot.tex}
+
+
 
 \printbibliography[heading=subbibliography]
 \end{refsection}

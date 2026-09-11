@@ -3,12 +3,13 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-dependencies-laplace =						\
+dependencies-laplace =							\
 	papers/laplace/packages.tex					\
-	papers/laplace/main.tex					\
-	papers/laplace/references.bib				\
-	papers/laplace/teil0.tex					\
-	papers/laplace/teil1.tex					\
-	papers/laplace/teil2.tex					\
-	papers/laplace/teil3.tex
-
+	papers/laplace/main.tex						\
+	papers/laplace/references.bib					\
+	papers/laplace/01_einleitung.tex				\
+	papers/laplace/01_herleitung.tex				\
+	papers/laplace/02_residuensatz.tex				\
+	papers/laplace/03_verzweigung.tex				\
+	papers/laplace/04_endlicher_stab.tex				\
+	papers/laplace/05_talbot.tex

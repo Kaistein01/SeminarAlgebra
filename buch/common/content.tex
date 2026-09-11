@@ -41,6 +41,8 @@ pdfauthor={Andreas Müller}
 }{}
 
 \input{common/titlepage.tex}
+\vfill
+\pagebreak
 
 % add common macros
 \input{common/macros.tex}
@@ -57,7 +59,7 @@ pdfauthor={Andreas Müller}
 \fancyhead[LO]{Index}
 \addcontentsline{toc}{chapter}{\indexname}
 \ifthenelse{\boolean{includecover}}{
-\InputIfFileExists{build/SeminarArticle.ind}{}{}
+\InputIfFileExists{build/SeminarAlgebra.ind}{}{}
 }{
 \InputIfFileExists{build/buch.ind}{}{}
 }
