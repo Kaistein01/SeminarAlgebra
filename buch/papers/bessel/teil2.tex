@@ -120,8 +120,6 @@ Der Koeffizient von $x^{n+\varrho}$ ist
 \label{bessel:loesung:eqn:rekursion}
 \end{equation}
 wobei der Term $a_{n-2}$ genau von $q_2=1$ herrührt.
-% Kontrolle. F(n+varrho) = (n+varrho)(n+varrho-1) + (n+varrho) - nu^2
-%            = (n+varrho)^2 - nu^2. Stimmt mit (bessel:loesung:eqn:index).
 Für $n=1$ bleibt
 \begin{equation}
 \bigl((1+\varrho)^2-\nu^2\bigr)a_1 = 0.
@@ -186,30 +184,6 @@ Der Konvergenzradius ist unendlich, und $x^{-\nu}J_\nu(x)$ ist eine ganze Funkti
 %
 \subsection{Die Bessel-Funktion erster Art
 \label{bessel:loesung:subsection:jnu}}
-
-Dafür brauchen wir die Gammafunktion, die im übrigen Buch nicht vorkommt.
-Für $\operatorname{Re}z>0$ ist sie durch das Eulersche Integral
-\begin{equation}
-\Gamma(z)
-=
-\int_0^\infty t^{z-1}e^{-t}\,dt
-\label{bessel:loesung:eqn:gammadef}
-\end{equation}
-definiert.
-Partielle Integration liefert die Funktionalgleichung
-\begin{equation}
-\Gamma(z+1) = z\,\Gamma(z),
-\label{bessel:loesung:eqn:gammafunktional}
-\end{equation}
-und wegen $\Gamma(1)=1$ folgt daraus $\Gamma(n+1)=n!$ für $n\in\mathbb{N}$.
-Die Gammafunktion ist also eine Fortsetzung der Fakultät auf komplexe Argumente.
-Mit~\eqref{bessel:loesung:eqn:gammafunktional} in der Form $\Gamma(z)=\Gamma(z+1)/z$ lässt sie sich im Sinne von Abschnitt~\ref{buch:analytisch:section:fortsetzung} analytisch fortsetzen.
-Man erhält so eine auf ganz $\mathbb{C}$ ausser den Punkten $0,-1,-2,\dots$ definierte Funktion.
-Dort hat sie einfache Pole, und Nullstellen hat sie nirgends.
-Ihr Kehrwert $1/\Gamma$ ist deshalb eine ganze Funktion, die genau an diesen Stellen verschwindet.
-Schliesslich ist $\Gamma(\frac12)=\sqrt{\pi}$.
-Mehr wird im Folgenden nicht gebraucht, für eine ausführliche Darstellung sei auf \cite{bessel:abramowitz} verwiesen.
-
 Der Koeffizient $a_0$ ist frei wählbar.
 Die übliche Normierung ist
 \begin{equation}
