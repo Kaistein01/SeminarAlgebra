@@ -20,6 +20,7 @@ $z$-Achse mit der Quaternion $0 + 0i + 0j + 1k$ durchgeführt werden.
 
 Der Realteil gibt den Winkel der 
 Drehung an. Dafür wird die eulersche Drehformel in der Form
+\index{Euler-Formel}%
 \begin{equation*}
     e^{i\vartheta} = \cos(\vartheta) + i\sin(\vartheta)
 \end{equation*}
@@ -66,6 +67,7 @@ Beispiel gezeigt wird.
     auf den Ursprung verschoben mit Länge 1 in der vierten Dimension.
 \end{beispiel}
 
+\pagebreak
 \subsubsection{Visualisierung}
 \input{papers/qa/videoqrcode.tex}
 Vierdimensionale Zahlen lassen sich nicht leicht visualisieren. 
@@ -76,7 +78,7 @@ Koordinatensystem darzustellen. Abbildung \ref{qa:fig:Drehung} zeigt in vier
 Schritten die Drehung des vorherigen Beispiels. Zusätzlich wurde ein Würfel mit 
 den Kantenlängen $1$ in das Koordinatensystem eingefügt, um das Verhalten des Raumes 
 zu verdeutlichen.
-Alternativ kann die Animation zu dieser Drehung über den beiliegenden QR Code abgespielt werden.
+Alternativ kann die Animation zu dieser Drehung über den nebenstehenden QR Code abgespielt werden.
 
 \begin{figure}
     \centering
@@ -127,13 +129,13 @@ dass der gelbe Pfeil rechtwinklig steht zu allen anderen Pfeilen,
 in der vierten Dimension. Der rot markierte Punkt $P_1$ liegt nun im 
 Ursprung, mit $-1$ in der reellen Achse.
 
-\subsubsection{Multiplikation von Rechts}
+\subsubsection{Multiplikation von rechts}
 
 Um den Punkt tatsächlich um 90° um die $z$-Achse im 
 Gegenuhrzeigersinn zu drehen, muss die Rolle der Reihenfolge 
 analysiert werden. Dafür wird ein neuer Beispielpunkt $P_2 = (0,1,1)
 $ verwendet, welcher nach einer Drehung auch den Ort wechselt. Eine 
-Multiplikation von Links würde
+Multiplikation von links würde
 \begin{equation*}
     P_{2L} = q P_2 
     = k \cdot (0 + 0i + 1\!j + 1k) 
@@ -146,7 +148,7 @@ Punkt wurde also um 90° um die $z$-Achse im Gegenuhrzeigersinn
 gedreht, jedoch wurde der $z$-Anteil des Punktes auf 0 reduziert. 
 Der Realteil beträgt $-1$.
 
-Von Rechts würde die Multiplikation
+Von rechts würde die Multiplikation
 \begin{equation*}
     P_{2R} 
     = P_2 q 
@@ -154,12 +156,12 @@ Von Rechts würde die Multiplikation
     = jk + k^2 
     = i - 1
 \end{equation*}
-lauten, was dem Punkt $(1,0,0)$ entspricht. Von Rechts wurde 
+lauten, was dem Punkt $(1,0,0)$ entspricht. Von rechts wurde 
 der Punkt also um 90° in umgekehrter Drehrichtung um die $z$-Achse 
 gedreht. Auch hier wurde der $z$-Anteil des Punktes auf 0 
 reduziert, mit Realteil $-1$.
 
-Die Multiplikation von Links und Rechts betrifft also primär die 
+Die Multiplikation von links und rechts betrifft also primär die 
 Richtung der Drehung. Es ist zu beachten, dass für beide 
 Multiplikationen das selbe Phänomen auftritt, dass der $z$-Anteil 
 des Punktes auf 0 reduziert und der Realteil auf $-1$ gesetzt wird. 
@@ -167,31 +169,33 @@ Anders ausgedrückt: Die entstandene Verzerrung ist sowohl bei
 Linksmultiplikation als auch bei Rechtsmultiplikation identisch. 
 Im nächsten Abschnitt wird gezeigt, wie dieser Nebeneffekt elegant 
 gelöst werden kann.
+
 \subsection{Die Drehformel\label{qa:section:drehungen:drehformel}}%
 Für die effektive Drehung werden die folgenden Eigenschaften der 
 Quaternionen verwendet:
 \begin{itemize}
-    \item Multiplikation von Links: Gegenuhrzeigersinn mit 
-''Realteil''
-    \item Multiplikation von Rechts: Uhrzeigersinn mit identischem ''Realteil''
-    \item Inverse einer Quaternion: $q^{-1}$ macht die Drehung 
-    rückgängig, sodass $q q^{-1} = 1$
+    \item Multiplikation von links: Gegenuhrzeigersinn mit ``Realteil''.
+    \item Multiplikation von rechts: Uhrzeigersinn mit identischem ``Realteil''.
+    \item Inverse einer Quaternion: $q^{-1}$ macht die Drehung
+    rückgängig, sodass $q q^{-1} = 1$.
     \item Bei Einheitsquaternionen gilt: $q^{-1} = q^*$, wobei $q^*$ 
-    die konjugierte Quaternion ist
+    die konjugierte Quaternion ist.
 \end{itemize}
 Für die verzerrungsfreie Drehung wird zuerst der Punkt $P$ mit der 
-Quaternion $q$ von Links multipliziert, was in unserem Beispiel 
+Quaternion $q$ von links multipliziert, was in unserem Beispiel 
 eine Drehung um 90° im Gegenuhrzeigersinn ergibt. Danach wird das 
-Ergebnis von Rechts mit der Inverse desselben Quaternion $q^{-1}$ 
+Ergebnis von rechts mit der Inverse desselben Quaternion $q^{-1}$ 
 multipliziert, welches erneut eine Drehung um 90° im 
 Gegenuhrzeigersinn bewirkt. Die Inverse hat dabei zwei 
 entscheidende Wirkungen:
 \begin{itemize}
-    \item Die zweite Drehung macht die Verzerrung rückgängig
-    \item Die Drehrichtung von Rechts wird umgekehrt, sodass zwei 
-    aufeinanderfolgende Drehungen in gleicher Richtung erfolgen
+    \item Die zweite Drehung macht die Verzerrung rückgängig.
+    \item Die Drehrichtung von rechts wird umgekehrt, sodass zwei 
+    aufeinanderfolgende Drehungen in gleicher Richtung erfolgen.
 \end{itemize}
 Die Drehformel lautet also
+\index{Quaternionen!Drehformel}%
+\index{Drehformel für Quaternionen}%
 \begin{equation*}
     P' = q P q^{-1}.
 \end{equation*}
@@ -214,7 +218,7 @@ um 90° um die $z$-Achse ergibt sich
     &= (-1, 0, 1) \quad \text{(ohne Realteil!)}.
 \end{align*}
 Es ist zu beachten, dass im Beispiel nun eine Drehung um 180° statt um 90° 
-durchgeführt wurde, da die Multiplikation von Links und von Rechts je eine 
+durchgeführt wurde, da die Multiplikation von links und von rechts je eine 
 Drehung um 90° bewirkt. Die beiden Drehungen addieren sich also, während sich 
 die Verzerrungen gegenseitig aufheben. Um eine Drehung um 90° zu erhalten, muss 
 der Winkel in der Berechnung der Quaternion $q$ daher halbiert werden, also 
@@ -227,7 +231,7 @@ Produkte der Einheitsquaternionen $i,j,k$ in diesem Fall besonders einfach
 ausrechnen lassen. Die Konstruktion ist aber nicht an diesen speziellen Winkel
 gebunden: Erstens ist die Drehquaternion $q$ ist dank der Normalisierung für jeden Winkel 
 $\vartheta$ eine Einheitsquaternion. Zweitens ist die Argumentation, weshalb die Verzerrung durch die 
-Multiplikation mit $q^{-1}$ von Rechts wieder rückgängig gemacht wird, nicht
+Multiplikation mit $q^{-1}$ von rechts wieder rückgängig gemacht wird, nicht
 vom Wert des Winkels $\vartheta$ abhängig. Dass $P' = qPq^{*}$ tatsächlich 
 für jeden Winkel $\vartheta$ die Drehung um die durch $(x,y,z)$ gegebene Achse 
 liefert, zeigen die folgenden Berechnungen. Um den Term zu vereinfachen,
@@ -270,8 +274,9 @@ trigonometrischen Eigenschaften zusammengefasst wird daraus
     + \sin\vartheta\,\vec{u}\times\vec{p}.
 \end{align*}
 Das ist genau die Rodrigues-Formel für die Drehung des Vektors $\vec{p}$ um
+\index{Rodrigues-Formel}%
 die Achse $\vec{u}$ um den Winkel $\vartheta$, wie sie in
-\cite{qa:linalg-qa} hergeleitet wird. Die Drehformel gilt also für beliebige
+\cite[pp.~459--460]{qa:linalg} hergeleitet wird. Die Drehformel gilt also für beliebige
 Winkel $\vartheta$.
 
 Somit gilt die Drehformel $P' = qPq^{*}$ für beliebige Winkel $\vartheta$ und beliebige Achsen $(x,y,z)$,

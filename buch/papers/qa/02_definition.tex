@@ -88,12 +88,15 @@ nachgewiesen werden.
 Wenn die Reihenfolge der Multiplikation vertauscht wird, dann 
 ändert sich das Vorzeichen. Quaternionen sind also nicht 
 kommutativ. Dies kann intuitiv verstanden werden, wenn man sich 
+\index{Quaternionen!nicht kommutativ}%
 eine Drehung um die $x$-Achse und eine Drehung um die $y$-Achse 
 vorstellt. Die Reihenfolge der beiden Drehungen spielt eine Rolle, 
 da das Ergebnis unterschiedlich ausfällt.
 
 Die Addition von zwei Quaternionen funktioniert analog zu den 
-komplexen Zahlen. Die Komponenten werden auch hier komponentenweise
+komplexen Zahlen.
+\index{Quaternionen!Addition}%
+Die Komponenten werden auch hier komponentenweise
 addiert, sodass
 \begin{equation*}
     (a + ib + jc + kd) + (e + if + jg + kh) 
@@ -102,6 +105,7 @@ addiert, sodass
 gilt.
 Auch das Multiplizieren zweier Quaternionen funktioniert analog zu 
 den komplexen Zahlen. Die Komponenten werden distributiv
+\index{Quaternionen!Multiplikation}%
 multipliziert und das Ergebnis wieder in Real- und Imaginärteile
 aufgeteilt, woraus
 \begin{align*}
@@ -145,33 +149,38 @@ wie oben bereits gezeigt wurde.
 
 \subsection{Konjugation, Norm und Inverse}
 
-Auch für Quaternionen existiert die komplexe Konjugation. Wie bei 
+Auch für Quaternionen existiert die \emph{komplexe Konjugation}. Wie bei 
+\index{Quaternionen!Konjugation}%
 den komplexen Zahlen wird der Realteil nicht verändert, während die
 Imaginärteile negiert werden, also
 \begin{equation*}
     q^* = (a + ib + jc + kd)^* = a - ib - jc - kd .
 \end{equation*}
-Die euklidische Norm einer Quaternion ist die Summe der Quadrate aller 
+Die euklidische \emph{Norm} einer Quaternion ist die Summe der Quadrate aller 
 Komponenten. Sie wird durch
 \begin{equation*}
     |q|^2 = |a + ib + jc + kd|^2 = a^2 + b^2 + c^2 + d^2
 \end{equation*}
 berechnet.
 Die Norm lässt sich auch über die Konjugation als
+\index{Quaternionen!Norm}%
 \begin{equation*}
     |q|^2 = q \cdot q^* 
     = (a + ib + jc + kd) \cdot (a - ib - jc - kd)
 \end{equation*}
 schreiben.
-Einheitsquaternionen sind Quaternionen mit der Norm 1. Sie 
+\emph{Einheitsquaternionen} sind Quaternionen mit der Norm 1. Sie 
+\index{Quaternionen!Einheitsquaternion}%
 bilden die Einheitskugel im vierdimensionalen Raum, wie die komplexen 
 Zahlen z mit $|z| = 1$ den 
+\index{Quaternionen!Einheitsquaternionen}%
 Einheitskreis im komplexen Raum. In den folgenden Abschnitten wird 
 gezeigt, dass vor allem Einheitsquaternionen von grosser 
 Wichtigkeit sind.
 
-Um die Inverse einer Quaternion zu berechnen, werden die Norm und 
+Um die \emph{Inverse} einer Quaternion zu berechnen, werden die Norm und 
 die Konjugation benötigt. Das Ziel ist, dass $q q^{-1} = 1$ 
+\index{Quaternionen!Inverse}%
 ergibt. Diese Gleichung lässt sich zu
 \begin{align*}
     q q^{-1} &= 1 \\
