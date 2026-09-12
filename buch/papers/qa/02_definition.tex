@@ -108,18 +108,34 @@ den komplexen Zahlen. Die Komponenten werden distributiv
 \index{Quaternionen!Multiplikation}%
 multipliziert und das Ergebnis wieder in Real- und Imaginärteile
 aufgeteilt, woraus
-\begin{align*}
-    (a + ib + jc + kd) \cdot (e + if + jg + kh) 
-    &= \qquad ae + aif + ajg + akh \\
-    &\qquad+ ibe + i^2bf + i\!jbg + ikbh \\
-    &\qquad+ jce + jif + j^2cg + jkch \\
-    &\qquad+ kde + kif + kjcg + k^2dh \\
-    &= \qquad (ae - bf - cg - dh) \\
-    &\qquad+ i(af + be + ch - dg) \\
-    &\qquad+ j(ag - bh + ce + df) \\
-    &\qquad+ k(ah + bg - cf + de)
-\end{align*}
+%\begin{align*}
+%    (a + ib + jc + kd) \cdot (e + if + jg + kh) 
+%    &= \qquad ae + aif + ajg + akh \\
+%    &\qquad+ ibe + i^2bf + i\!jbg + ikbh \\
+%    &\qquad+ jce + jif + j^2cg + jkch \\
+%    &\qquad+ kde + kif + kjcg + k^2dh \\
+%    &= \qquad (ae - bf - cg - dh) \\
+%    &\qquad+ i(af + be + ch - dg) \\
+%    &\qquad+ j(ag - bh + ce + df) \\
+%    &\qquad+ k(ah + bg - cf + de)
+%\end{align*}
+\begin{equation*}
+\renewcommand{\arraycolsep}{1.5pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{array}{rccrcrcrcr}
+(a + ib + jc + kd) \cdot (e + if + jg + kh) 
+    &=& &  ae                  &+& a{\color{darkred}i}f   &+& a{\color{darkred}j}g    &+& a{\color{darkred}k}h \\
+    & &+& {\color{darkred}i}be &+& {\color{darkred}i^2}bf &+& {\color{darkred}i\!j}bg &+& {\color{darkred}i}kbh \\
+    & &+& {\color{darkred}j}ce &+& {\color{darkred}ji}cf  &+& {\color{darkred}j^2}cg  &+& {\color{darkred}jk}ch \\
+    & &+& {\color{darkred}k}de &+& {\color{darkred}ki}df  &+& {\color{darkred}k\!j}dg   &+& {\color{darkred}k^2}dh \\[5pt]
+    &=& &\rlap{\hspace*{-9pt}$\,(ae {\color{darkred}\mathstrut-\mathstrut} bf {\color{darkred}\mathstrut-\mathstrut} cg {\color{darkred}\mathstrut-\mathstrut} dh)$}   \\
+    & &+&\rlap{\hspace*{-9pt}$ \llap{${\color{darkred}i}$}\,(af + be {\color{darkred}\mathstrut+\mathstrut} ch {\color{darkred}\mathstrut-\mathstrut} dg)$} \\
+    & &+&\rlap{\hspace*{-9pt}$ \llap{${\color{darkred}j}$}\,(ag {\color{darkred}\mathstrut-\mathstrut} bh + ce {\color{darkred}\mathstrut+\mathstrut} df)$} \\
+    & &+&\rlap{\hspace*{-9pt}$ \llap{${\color{darkred}k}$}\,(ah {\color{darkred}\mathstrut+\mathstrut} bg {\color{darkred}\mathstrut-\mathstrut} cf + de)$}
+\end{array}
+\end{equation*}
 folgt.
+Farbige Operationszeichen rühren von Produkten zweier Basisquaternionen her.
 
 \subsection{Warum vier Dimensionen?}
 Angenommen, es gäbe eine dreidimensionale Zahlenmenge mit Basis $1, i, j$ und
